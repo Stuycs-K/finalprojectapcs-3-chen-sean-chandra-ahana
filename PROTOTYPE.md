@@ -20,6 +20,10 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 
 # Intended pacing:
 
-How you are breaking down the project and who is responsible for which parts.
+5/22 - Prototype and Diagrams Completed
 
-A timeline with expected completion dates of parts of the project. (CHANGE THIS!!!!!)
+5/26 - Individual Classes will be completed (pawn, bishop, etc)
+
+5/30 - Processing Complete or Nearly Completed
+
+6/2 - Extensive testing, final touches, get ready to present
