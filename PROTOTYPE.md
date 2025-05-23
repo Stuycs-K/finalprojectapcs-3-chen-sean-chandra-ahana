@@ -67,8 +67,22 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 
 5/22 - Prototype and Diagrams Completed
 
+It should be noted that these roles are not 100% strict - we will be helping each other out when needed, especially during processing since its much harder to fully flesh out the visualization of the processing details before actually getting to it. 
+
+- Prototype, Pacing and Technical Details : Sean :white_check_mark:
+
+- Diagrams : Ahana
+
 5/26 - Individual Classes will be completed (pawn, bishop, etc)
 
+- Piece, Queen, Rook, Bishop : Sean 
+
+- Knight, King, Pawn, Board : Ahana
+
 5/30 - Processing Complete or Nearly Completed
+
+- Update Board State, Pieces : Ahana
+
+- Draw Board (including coordinates on side), Pieces, Point Display : Sean
 
 6/2 - Extensive testing, final touches, get ready to present
