@@ -16,7 +16,7 @@ Piece Class (abstract class, like adventurer) :
 - boolean isWhite
 - int value
 - constructor will take in a boolean and determine which color a piece is
-- ~ArrayList<Integer> ~ ArrayList<int[]> moves (not entirely sure whether to make this an Integer arraylist to store positions or make it a chessboard with letter positions. Obviously in processing we will display it as with letters but this is just for coding.)
+- ~ArrayList of Integers~ ArrayList<int[]> moves (not entirely sure whether to make this an Integer arraylist to store positions or make it a chessboard with letter positions. Obviously in processing we will display it as with letters but this is just for coding.)
 - take() - takes a piece, updates counter for opposite boolean, removes piece from board.
 - move() - removes piece from position, places it at desired location, and checks if isLegal(). take() will call this.   
 - isLegal() - checks to see if move is legal. this method may be removed for displaying possible moves but is likely to be kept to stop broken moves.
