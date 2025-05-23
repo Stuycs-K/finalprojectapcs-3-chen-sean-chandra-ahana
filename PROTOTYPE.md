@@ -36,8 +36,9 @@ Bishop:
 
 Rook:
 - only moves horizontally and vertically.
-- castling boolean is in king.
+- ~castling boolean is in king~ boolean castle 
 - value = 5
+- [NEW] hasMoved() - returns castle
 
 Knight:
 - only moves two spaces in any direction and then one space left/right/up/down depending on the direction the two spaces originally moved (L SHAPE)
@@ -54,7 +55,8 @@ King:
 	- if true can castle. Only is true if the king has not made a move yet.
 - boolean checkmate
 	- no legal moves, you lose
-
+- [NEW] hasMoved() - returns castle
+- [NEW] castle() - calls move and castles the pieces
 We will use an ArrayList to handle moves. This may be inefficient, we can test more options later but the important part is to get things working first. Other ideas include recursion or looping through the whole board.
 
 
