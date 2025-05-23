@@ -1,7 +1,7 @@
 abstract class Piece{
   boolean isWhite; 
   int value;
-  ArrayList<String> legalMoves; 
+  ArrayList<int[]> legalMoves; 
   Piece(boolean isWhite, int value){
     this.isWhite = isWhite;
     this.value = value;
@@ -10,8 +10,18 @@ abstract class Piece{
   
   abstract void take();
   
-  abstract void move(int r, int c); // moves to row column 
+  void move(int[] go){
+    if(isLegal(go)){
+      
+    }
+  }  
   
-  abstract boolean isLegal(); // will check if the space is out of bounds, and is in legalMoves
+  boolean isLegal(int[] go){
+    return legalMoves().contains(go);
+  }
+  
+ ArrayList<int[]> legalMoves(){
+   return legalMoves;
+ }
     
 }
