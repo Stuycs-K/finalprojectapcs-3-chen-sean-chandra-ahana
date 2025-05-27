@@ -63,7 +63,7 @@ We will use an ArrayList to handle moves. This may be inefficient, we can test m
 # Project Design
 
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
-
+![UML Diagram](ChessGame.drawio.png)
 
 
 # Intended pacing:
