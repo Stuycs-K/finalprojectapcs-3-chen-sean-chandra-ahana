@@ -1,5 +1,8 @@
 public class Knight extends Piece{
-
+  private int row;
+  private int col;
+  private int value;
+  private boolean captured;
     public Knight(int row, int col, int value){
         this.row = row;
         this.col = col;
