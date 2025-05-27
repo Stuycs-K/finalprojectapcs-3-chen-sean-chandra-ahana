@@ -1,7 +1,8 @@
 abstract class Piece{
   boolean isWhite; 
   int value;
-  ArrayList<int[]> legalMoves; 
+  boolean captured;
+  ArrayList<int[]> possibleMoves; 
   Piece(boolean isWhite, int value){
     this.isWhite = isWhite;
     this.value = value;
@@ -21,7 +22,7 @@ abstract class Piece{
   }
   
  ArrayList<int[]> legalMoves(){
-   return legalMoves;
+   return possibleMoves;
  }
     
 }
