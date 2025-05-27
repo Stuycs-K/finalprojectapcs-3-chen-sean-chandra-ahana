@@ -6,6 +6,7 @@ abstract class Piece{
   Piece(boolean isWhite, int value){
     this.isWhite = isWhite;
     this.value = value;
+    captured = false;
   }
   
   
