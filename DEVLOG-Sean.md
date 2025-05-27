@@ -13,4 +13,7 @@ Expanded description:
 - created new tabs, started writing subclasses Rook, Bishop, Queen 
 
 
-### 2024-01-03 - Brief description
+### 2025-05-23 - improving Piece, writing new classes
+- added some new stuff to prototype
+- wrote Piece class, waiting on partner to write Board class to implement last method 
+- wrote Pawn, didn't finish implementing all methods
