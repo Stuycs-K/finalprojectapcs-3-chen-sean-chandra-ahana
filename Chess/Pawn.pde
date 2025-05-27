@@ -2,35 +2,32 @@ class Pawn extends Piece{
     boolean firstMove;
     boolean enPassant;
 
-    public Pawn(int value){
-        this.value = value;
-        this.captured = false;
-        this.firstMove = true;
-        this.enPassant = false;
+    public Pawn(boolean isWhite, int[] startPos){
+      super(isWhite, 1, startPosition);
+      this.firstMove = false;
+      enPassant = false;
     }
 
-    public boolean isLegal(int targetRow, int targetCol){
+    public boolean isLegal(int[] targetPos){
         int direction;
-        if (this.value > 0){
-            direction = -1;
-        } else{
-            direction = 1;
+        if(this.isWhite){
+          direction = -1;
         }
-
-        if (targetCol == this.col && targetRow == this.row + direction){
-            return true;
+        else{
+          direction = 1; // to save space on the next if statements
         }
-
-        if (firstMove && targetCol == this.col && targetRow == this.row + 2 * direction){
-            return true;
+        if(targetPos[0] = this.position[0] + direction){
+          return true;
         }
-
-        if (Math.abs(targetCol - this.col) == 1 && targetRow == this.row + direction){
-            return true;
+        if(firstMove && targetPos[1] == this.position[1] && target[0] == this.position[0] + 2 * direction){
+          return true;
         }
-
+        if((target[1] - current[1] == 1 || target[1] - current[1] == -1) && target[0] = this.position[0] + direction)
+        {
+          return true;
+        }
         return false;
-    }
+  }
 
     public void move(int targetRow, int targetCol){
         if (isLegal(targetRow, targetCol)){
