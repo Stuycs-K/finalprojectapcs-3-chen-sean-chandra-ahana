@@ -18,12 +18,7 @@ abstract class Piece{
     }
   }  
   
-  boolean isLegal(int[] go){
-    return legalMoves().contains(go);
-  }
+  abstract boolean isLegal(int[] go);
   
- ArrayList<int[]> legalMoves(){
-   return possibleMoves;
- }
     
 }
