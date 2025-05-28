@@ -21,7 +21,10 @@ abstract class Piece{
     }
   }  
   
-  abstract boolean isLegal(int[] go);
+  abstract boolean isLegal(int[] go){
+    contains(go);
+  }
+  
   boolean isWithinBounds(int[] go){
     return go[0] >= 0 && go[0] < 8 && go[1] >= 0 && go[1] < 8;
   }

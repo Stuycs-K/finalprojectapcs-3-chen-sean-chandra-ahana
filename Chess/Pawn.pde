@@ -9,9 +9,6 @@ class Pawn extends Piece{
       enPassant = false;
     }
 
-    boolean isLegal(int[] targetPos){
-      return possibleMoves.contains(targetPos);
-  }
   
   void updateMoves(){
     int direction;
