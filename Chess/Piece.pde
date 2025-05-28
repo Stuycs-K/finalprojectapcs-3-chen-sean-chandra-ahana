@@ -1,3 +1,4 @@
+import java.util.*;
 abstract class Piece{
   boolean isWhite; 
   int value;
@@ -21,8 +22,10 @@ abstract class Piece{
   }  
   
   abstract boolean isLegal(int[] go);
-  boolean isWithinBounds(){
-    return position[0] >= 0 && position[0] < 8 && position[1] >= 0 && position[1] < 8;
+  boolean isWithinBounds(int[] go){
+    return go[0] >= 0 && go[0] < 8 && go[1] >= 0 && go[1] < 8;
   }
+  
+  abstract void updatePossibleMoves();
     
 }

@@ -1,18 +1,19 @@
+import java.util.*;
 class Pawn extends Piece{
     boolean firstMove;
     boolean enPassant;
 
-    public Pawn(boolean isWhite, int[] startPos){
+    Pawn(boolean isWhite, int[] startPos){
       super(isWhite, 1, startPosition);
       this.firstMove = false;
       enPassant = false;
     }
 
-    public boolean isLegal(int[] targetPos){
+    boolean isLegal(int[] targetPos){
       return possibleMoves.contains(targetPos);
   }
   
-  public void updateMoves(){
+  void updateMoves(){
     int direction;
     if(isWhite){
       direction = -1;
@@ -45,7 +46,7 @@ class Pawn extends Piece{
         }        
   }
 
-    public void move(int targetRow, int targetCol){
+    void move(int targetRow, int targetCol){
         if (isLegal(targetRow, targetCol)){
             if (Math.abs(targetRow - this.row) == 2){
                 this.enPassant = true;
@@ -59,7 +60,7 @@ class Pawn extends Piece{
         }
     }
 
-    public void take(Piece target){
+    void take(Piece target){
         int direction;
         if (this.value > 0){
             direction = -1;
@@ -76,11 +77,11 @@ class Pawn extends Piece{
 
     }
 
-    public boolean isFirstMove(){
+     boolean isFirstMove(){
         return firstMove;
     }
 
-    public boolean canEnPassant(){
+     boolean canEnPassant(){
         return enPassant;
     }
 }
