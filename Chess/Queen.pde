@@ -1,13 +1,10 @@
 class Queen extends Piece{
   Queen(boolean isWhite, int[] startPos){
-      super(isWhite, 1, startPos);
+      super(isWhite, 9, startPos);
     }
 
-    boolean isLegal(int[] targetPos){
-      return possibleMoves.contains(targetPos);
-  }
   
-  void updateMoves(){
+  void updateMoves(){ 
     int row = position[0];
     int col = position[1];
     int[] dir = {1,-1,1-1};
