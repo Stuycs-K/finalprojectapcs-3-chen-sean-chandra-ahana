@@ -13,7 +13,16 @@ abstract class Piece{
   }
   
   
-  abstract void take();
+  void take(int[] go){
+    if(Board[go[0]][go[1]] != null && !target.captured){
+      Board[go[0]][go[1]].captured = true;
+      Board[position[0]][position[1]]= null;
+      this.position = go;
+      Board[go[0]][go[1]].position = this;
+      //also needs to update points
+      
+    }
+  }
   
   void move(int[] go){
     if(isLegal(go)){
