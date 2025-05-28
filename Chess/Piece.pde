@@ -27,5 +27,12 @@ abstract class Piece{
   }
   
   abstract void updatePossibleMoves();
-    
+   boolean contains(int[] go){
+     for(int[] x : possibleMoves){
+       if(x[0] == go[0] && x[1] == go[1]){
+         return true;
+       }
+     }
+     return false;
+   }
 }
