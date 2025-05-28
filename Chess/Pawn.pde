@@ -9,24 +9,40 @@ class Pawn extends Piece{
     }
 
     public boolean isLegal(int[] targetPos){
-        int direction;
-        if(this.isWhite){
-          direction = -1;
+      return possibleMoves.contains(targetPos);
+  }
+  
+  public void updateMoves(){
+    int direction;
+    if(isWhite){
+      direction = -1;
+    }
+    else{
+      direction = 1;
+    }
+        int row = position[0];
+        int col = position[1];
+        
+        int[] move = new int[] {row + direction, col};
+        if(isWithinBounds(move)){
+          possibleMoves.add(move);
         }
-        else{
-          direction = 1; // to save space on the next if statements
+        move = new int[] {row + direction*2, col};
+        if(isWithinBounds(move) && firstMove){
+          possibleMoves.add(move);
         }
-        if(targetPos[0] = this.position[0] + direction){
-          return true;
+        move = new int[] {row + direction*2, col};
+        if(isWithinBounds(move)){
+          possibleMoves.add(move);
         }
-        if(firstMove && targetPos[1] == this.position[1] && target[0] == this.position[0] + 2 * direction){
-          return true;
+        move = new int[] {row + direction, col + 1};
+        if(isWithinBounds(move)){
+          possibleMoves.add(move);
         }
-        if((target[1] - current[1] == 1 || target[1] - current[1] == -1) && target[0] = this.position[0] + direction)
-        {
-          return true;
-        }
-        return false;
+        move = new int[] {row + direction, col - 1};
+        if(isWithinBounds(move)){
+          possibleMoves.add(move);
+        }        
   }
 
     public void move(int targetRow, int targetCol){
