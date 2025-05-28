@@ -11,6 +11,7 @@ class Pawn extends Piece{
 
   
   void updateMoves(){
+    possibleMoves.clear();
     int direction;
     if(isWhite){
       direction = -1;
@@ -59,22 +60,6 @@ class Pawn extends Piece{
         }
     }
 
-    void take(Piece target){
-        int direction;
-        if (isWhite){
-            direction = -1;
-        } else{
-            direction = 1;
-        }
-
-        if (!target.captured){
-            if (Math.abs(target.position[0] - this.position[0]) == 1 && target.position[1] == this.position[1] + direction){
-                target.captured = true;
-                move(target.position[0], target.position[1]);
-            }
-        }
-
-    }
 
      boolean isFirstMove(){
         return firstMove;
