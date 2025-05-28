@@ -4,7 +4,7 @@ class Pawn extends Piece{
     boolean enPassant;
 
     Pawn(boolean isWhite, int[] startPos){
-      super(isWhite, 1, startPosition);
+      super(isWhite, 1, startPos);
       this.firstMove = false;
       enPassant = false;
     }
@@ -46,32 +46,34 @@ class Pawn extends Piece{
         }        
   }
 
-    void move(int targetRow, int targetCol){
-        if (isLegal(targetRow, targetCol)){
-            if (Math.abs(targetRow - this.row) == 2){
+    void move(int[] target){
+      int targetRow = target[0];
+      int targetCol = target[1];
+        if (isLegal(target)){
+            if (Math.abs(targetRow - position[0]) == 2){
                 this.enPassant = true;
             } else{
                 this.enPassant = false;
             }
 
-            this.row = targetRow;
-            this.col = targetCol;
-            this.firstMove = false;
+            position[0] = targetRow;
+            position[1] = targetCol;
+            firstMove = false;
         }
     }
 
     void take(Piece target){
         int direction;
-        if (this.value > 0){
+        if (isWhite){
             direction = -1;
         } else{
             direction = 1;
         }
 
         if (!target.captured){
-            if (Math.abs(target.col - this.col) == 1 && target.row == this.row + direction){
+            if (Math.abs(target.position[0] - this.position[0]) == 1 && target.position[1] == this.position[1] + direction){
                 target.captured = true;
-                move(target.row, target.col);
+                move(target.position[0], target.position[1]);
             }
         }
 
