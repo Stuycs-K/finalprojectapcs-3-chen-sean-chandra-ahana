@@ -17,3 +17,9 @@ Expanded description:
 - added some new stuff to prototype
 - wrote Piece class, waiting on partner to write Board class to implement last method 
 - wrote Pawn, didn't finish implementing all methods
+
+
+### 2025-05-27 - wrote most of Pawn
+- a little behind on schedule, writing Pawn took a lot of time to flesh out and plus I had to go back to edit Piece in places it was missing
+- edited prototype, i realize we need a better UML diagram 
+- helped partner with branch stuff

@@ -7,6 +7,8 @@ We will use processing to display the board.
 
 NOTE: MOST CLASSES WILL BE SUBJECT TO CHANGE FROM THE PROTOTYPE SINCE IT IS NOT PERFECT. THE MAIN EXAMPLE OF THIS IS THE USAGE OF A Piece[][] FOR THE BOARD WITH 0 AS A "FREE PIECE" (empty space) THAT MAYBE CHANGED TO USE A SQUARE CLASS.
 
+NOTE TO GROUP: WE NEED TO UPDATE UML DIAGRAMS
+
 Board Class:
 
 - Piece[][] field - subject to change, we may find having a 2d array better or need a separate "squares" class if things do not work out.
@@ -74,7 +76,7 @@ It should be noted that these roles are not 100% strict - we will be helping eac
 
 - Prototype, Pacing and Technical Details : Sean :white_check_mark:
 
-- Diagrams : Ahana
+- Diagrams : Ahana :white_check_mark:
 
 5/26 - Individual Classes will be completed (pawn, bishop, etc)
 
@@ -84,8 +86,8 @@ It should be noted that these roles are not 100% strict - we will be helping eac
 
 5/30 - Processing Complete or Nearly Completed
 
-- Update Board State, Pieces : Ahana
+- Update Board State, Pieces (shared) : Ahana
 
-- Draw Board (including coordinates on side), Pieces, Point Display : Sean
+- Draw Board (including coordinates on side), Pieces (shared) , Point Display : Sean
 
 6/2 - Extensive testing, final touches, get ready to present
