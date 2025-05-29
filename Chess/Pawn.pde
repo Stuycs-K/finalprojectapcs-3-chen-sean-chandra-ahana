@@ -5,15 +5,13 @@ class Pawn extends Piece{
 
     Pawn(boolean isWhite, int[] startPos){
       super(isWhite, 1, startPos);
-      this.firstMove = false;
+      this.firstMove = true;
       enPassant = false;
     }
 
-    boolean isLegal(int[] targetPos){
-      return possibleMoves.contains(targetPos);
-  }
   
   void updateMoves(){
+    possibleMoves.clear();
     int direction;
     if(isWhite){
       direction = -1;
@@ -25,24 +23,27 @@ class Pawn extends Piece{
         int col = position[1];
         
         int[] move = new int[] {row + direction, col};
-        if(isWithinBounds(move)){
+        if(isWithinBounds(move) && Board[move[0]][move[1]] == null){
           possibleMoves.add(move);
         }
         move = new int[] {row + direction*2, col};
-        if(isWithinBounds(move) && firstMove){
-          possibleMoves.add(move);
-        }
-        move = new int[] {row + direction*2, col};
-        if(isWithinBounds(move)){
+        if(isWithinBounds(move) && firstMove && Board[move[0]][move[1]] == null && Board[move[0]-direction][col] == null){
           possibleMoves.add(move);
         }
         move = new int[] {row + direction, col + 1};
+        Piece target;
         if(isWithinBounds(move)){
-          possibleMoves.add(move);
+          target = Board[move[0]][move[1]];
+          if(target != null && target.isWhite != this.isWhite){
+            possibleMoves.add(move);
+          }
         }
         move = new int[] {row + direction, col - 1};
         if(isWithinBounds(move)){
-          possibleMoves.add(move);
+          target = Board[move[0]][move[1]];
+          if(target != null && target.isWhite != this.isWhite){
+            possibleMoves.add(move);
+          }
         }        
   }
 
@@ -55,29 +56,14 @@ class Pawn extends Piece{
             } else{
                 this.enPassant = false;
             }
-
+            Board[targetRow][targetCol] = this;
+            Board[position[0]][position[1]] = null;
             position[0] = targetRow;
             position[1] = targetCol;
             firstMove = false;
         }
     }
 
-    void take(Piece target){
-        int direction;
-        if (isWhite){
-            direction = -1;
-        } else{
-            direction = 1;
-        }
-
-        if (!target.captured){
-            if (Math.abs(target.position[0] - this.position[0]) == 1 && target.position[1] == this.position[1] + direction){
-                target.captured = true;
-                move(target.position[0], target.position[1]);
-            } 
-        }
-
-    }
 
      boolean isFirstMove(){
         return firstMove;
