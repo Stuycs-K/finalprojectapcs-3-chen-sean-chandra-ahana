@@ -19,15 +19,18 @@ Piece Class (abstract class, like adventurer) :
 - int value
 - constructor will take in a boolean and determine which color a piece is
 - ~ArrayList of Integers~ ArrayList<int[]> moves (not entirely sure whether to make this an Integer arraylist to store positions or make it a chessboard with letter positions. Obviously in processing we will display it as with letters but this is just for coding.)
-- take() - takes a piece, updates counter for opposite boolean, removes piece from board.
-- move() - removes piece from position, places it at desired location, and checks if isLegal(). take() will call this.   
-- isLegal() - checks to see if move is legal. this method may be removed for displaying possible moves but is likely to be kept to stop broken moves.
+- take(int[] go) - takes a piece, updates counter for opposite boolean, removes piece from board.
+- move(int[] go) - removes piece from position, places it at desired location, and checks if isLegal(). take() will call this.   
+- isLegal(int[] go) - checks to see if move is legal. this method may be removed for displaying possible moves but is likely to be kept to stop broken moves.
 We will have a counter for the value of the pieces taken.
-- [NEW] ArrayList<int[]> legalMoves - returns ArrayList<int[]> moves
+- ~[NEW] ArrayList<int[]> legalMoves - returns ArrayList<int[]> moves~ decided to remove this feature, since we don't need this currently.
+- [NEW] updateMoves() abstract method that changes for each child class to update possible moves. Needed to display where pieces can go when we make the procesing stuff.
+- [NEW] boolean isWithinBounds(int[] go) determines if go is in the board. saves time as a helper method for updateMoves.
+- [NEW] contains(int[] go) checks if possibleMoves has int[] go. contains() doesn't work on arraylist of arrays.
 
 Pawn:
 - boolean firstMove. Determines if a pawn can move forward two spaces or only one.
-- moves 1 up or one below depending on color.
+- moves 1 up or one below depending on color. [NEW] MAKE SURE THIS ALSO FIXES FIRST MOVE
 - boolean enPassant determines if a pawn can be en passanted (is this the right verb i have no idea)
 - take() moves 1 space diagonally.
 - value = 1
@@ -80,9 +83,9 @@ It should be noted that these roles are not 100% strict - we will be helping eac
 
 5/26 - Individual Classes will be completed (pawn, bishop, etc)
 
-- Piece, Queen, Rook, Bishop : Sean
+- Piece, Queen, Rook, Bishop, Pawn : Sean :white_check_mark:
 
-- Knight, King, Pawn, Board : Ahana
+- Knight, King, Board : Ahana
 
 5/30 - Processing Complete or Nearly Completed
 
