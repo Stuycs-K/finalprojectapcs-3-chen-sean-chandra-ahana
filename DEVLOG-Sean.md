@@ -23,3 +23,10 @@ Expanded description:
 - a little behind on schedule, writing Pawn took a lot of time to flesh out and plus I had to go back to edit Piece in places it was missing
 - edited prototype, i realize we need a better UML diagram 
 - helped partner with branch stuff
+
+### 2025-05-28 - finished all of pawn, leaving promote to chess or will implement in future, finished queen
+- moved take() to main, considering moving move to main and having special pieces override
+- implemented movement that takes into account where pieces stop moving (ex blocked by piece, blocked by enemy piece that is takeable)
+- still need to update uml diagrams and prototype
+- finished queen class mostly, fixed firstmove being false in pawn after I saw some things were off when I was editing take and move
+- rewrote move, now sets place on board to null and moves to target place if isLegal() is true
