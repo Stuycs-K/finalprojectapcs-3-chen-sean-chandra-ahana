@@ -5,15 +5,16 @@ class Queen extends Piece{
 
   
   void updateMoves(){ 
+    possibleMoves.clear();
     int row = position[0];
     int col = position[1];
     int[] direc = {1,-1,1,-1};
     int[] direc2 = {1,1,-1,-1};
     for(int i = 0; i < 4; i++){
       int r = row + direc[i];
-      int c = row + direc2[i];
+      int c = col + direc2[i];
       while(isWithinBounds(new int[] {r, c})){
-        Piece other = board[r][c];
+        Piece other = Board[r][c];
         if(other == null){
           possibleMoves.add(new int[] {r, c});
         }
@@ -32,9 +33,9 @@ class Queen extends Piece{
     direc2 = new int[]{0,0,1,-1};
     for(int i = 0; i < 4; i++){
       int r = row + direc[i];
-      int c = row + direc2[i];
+      int c = col + direc2[i];
       while(isWithinBounds(new int[] {r, c})){
-        Piece other = board[r][c];
+        Piece other = Board[r][c];
         if(other == null){
           possibleMoves.add(new int[] {r, c});
         }
@@ -51,7 +52,15 @@ class Queen extends Piece{
     }
   }
   
-  void take(){
-    
-  }
+  void move(int[] target){
+    int targetRow = target[0];
+    int targetCol = target[1];
+        if (isLegal(target)){
+            position[0] = targetRow;
+            position[1] = targetCol;
+            Board[targetRow][targetCol] = this;
+            Board[position[0]][position[1]] = null;
+        }
+   }
+  
 }

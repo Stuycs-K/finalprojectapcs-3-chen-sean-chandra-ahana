@@ -53,7 +53,8 @@ class Pawn extends Piece{
             } else{
                 this.enPassant = false;
             }
-
+            Board[targetRow][targetCol] = this;
+            Board[position[0]][position[1]] = null;
             position[0] = targetRow;
             position[1] = targetCol;
             firstMove = false;
