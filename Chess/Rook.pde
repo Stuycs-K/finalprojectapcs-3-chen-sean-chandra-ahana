@@ -1,6 +1,8 @@
 class Rook extends Piece{
+  boolean castle;
   Queen(boolean isWhite, int[] startPos){
       super(isWhite, 5, startPos);
+      castle = true;
     }
 
   
@@ -30,3 +32,8 @@ class Rook extends Piece{
       }
     }
   }
+  
+  boolean canCastle(){
+    return castle;
+  }
+}
