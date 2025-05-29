@@ -5,7 +5,7 @@ class Pawn extends Piece{
 
     Pawn(boolean isWhite, int[] startPos){
       super(isWhite, 1, startPos);
-      this.firstMove = false;
+      this.firstMove = true;
       enPassant = false;
     }
 
@@ -28,10 +28,6 @@ class Pawn extends Piece{
         }
         move = new int[] {row + direction*2, col};
         if(isWithinBounds(move) && firstMove){
-          possibleMoves.add(move);
-        }
-        move = new int[] {row + direction*2, col};
-        if(isWithinBounds(move)){
           possibleMoves.add(move);
         }
         move = new int[] {row + direction, col + 1};
