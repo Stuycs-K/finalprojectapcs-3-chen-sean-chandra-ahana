@@ -1,32 +1,33 @@
 class Knight extends Piece{
-  private int row;
-  private int col;
-  private int value;
-  private boolean captured;
-    Knight(int row, int col, int value){
-        this.row = row;
-        this.col = col;
-        this.value = value;
-        this.captured = false;
-    }
 
-    boolean isLegal(int targetRow, int targetCol){
-        int dx = Math.abs(targetRow - row);
-        int dy = Math.abs(targetCol - col);
-        return (dx == 2 && dy == 1) || (dx == 1 && dy == 2);
-    }
+  Knight(boolean isWhite, int value, int[] startPosition){
+    super(isWhite, value, startPosition);
+    possibleMoves = new ArrayList<int[]>();
+  }
 
-    void move(int targetRow, int targetCol){
-        if (isLegal(targetRow, targetCol)){
-            this.row = targetRow;
-            this.col = targetCol;
+  boolean isLegal(int[] go){
+    return contains(go);
+  }
+
+  void updateMoves(){
+    possibleMoves.clear();
+
+    int[][] directions = {
+      {2, 1}, {2, -1}, {-2, 1}, {-2, -1},
+      {1, 2}, {1, -2}, {-1, 2}, {-1, -2}
+    };
+
+    for(int[] dir : directions){
+      int newRow = position[0] + dir[0];
+      int newCol = position[1] + dir[1];
+      int[] move = {newRow, newCol};
+
+      if(isWithinBounds(move)){
+        Piece target = Board.grid[newRow][newCol];
+        if(target == null || target.isWhite != this.isWhite){
+          possibleMoves.add(move);
         }
+      }
     }
-
-    void take(Piece target){
-        if (isLegal(target.row, target.col) && !target.captured){
-            target.captured = true;
-            move(target.row, target.col);
-        }
-    }
+  }
 }
