@@ -21,7 +21,9 @@ void setup(){
   board.placePiece(new King(false, new int[]{0,4}),0,4);
   board.placePiece(new Queen(true, new int[]{7,4}),7,4);
   board.placePiece(new Queen(false, new int[]{0,4}),0,4);
-        
-  
+}
+
+
+void mouseClicked(){
   
 }
