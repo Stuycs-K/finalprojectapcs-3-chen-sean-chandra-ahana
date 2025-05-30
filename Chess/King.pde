@@ -1,6 +1,6 @@
-class Knight extends Piece{
+class King extends Piece{
 
-  Knight(boolean isWhite, int value, int[] startPosition){
+  King(boolean isWhite, int value, int[] startPosition){
     super(isWhite, value, startPosition);
     possibleMoves = new ArrayList<int[]>();
   }
@@ -12,7 +12,7 @@ class Knight extends Piece{
   void updateMoves(){
     possibleMoves.clear();
 
-    int[][] directions = {{2, 1}, {2, -1}, {-2, 1}, {-2, -1}, {1, 2}, {1, -2}, {-1, 2}, {-1, -2}};
+    int[][] directions = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
 
     for(int[] dir : directions){
       int newRow = position[0] + dir[0];
