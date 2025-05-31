@@ -11,8 +11,10 @@ NOTE TO GROUP: WE NEED TO UPDATE UML DIAGRAMS
 
 Board Class:
 
-- Piece[][] field - subject to change, we may find having a 2d array better or need a separate "squares" class if things do not work out.
-- getPiece()
+- Piece[][] ~field~ grid - subject to change, we may find having a 2d array better or need a separate "squares" class if things do not work out.
+- [UPDATED] getPiece(int row, int col) - does exactly what it sounds like it does
+- [NEW] placePiece(Piece piece, int row, int col) - places pieces at row col
+- [NEW] removePiece(int row, int col) - removes piece at row col 
 
 Piece Class (abstract class, like adventurer) :
 - boolean isWhite
@@ -31,7 +33,6 @@ We will have a counter for the value of the pieces taken.
 Pawn:
 - boolean firstMove. Determines if a pawn can move forward two spaces or only one.
 - moves 1 up or one below depending on color. [NEW] MAKE SURE THIS ALSO FIXES FIRST MOVE
-- boolean enPassant determines if a pawn can be en passanted (is this the right verb i have no idea)
 - take() moves 1 space diagonally.
 - value = 1
 
@@ -64,6 +65,8 @@ King:
 - [NEW] castle() - calls move and castles the pieces
 We will use an ArrayList to handle moves. This may be inefficient, we can test more options later but the important part is to get things working first. Other ideas include recursion or looping through the whole board.
 
+- [NEW] Uploaded a bunch of sprites from online and a chessboard
+
 
 # Project Design
 
@@ -91,6 +94,6 @@ It should be noted that these roles are not 100% strict - we will be helping eac
 
 - Update Board State, Pieces (shared) : Ahana
 
-- Draw Board (including coordinates on side), Pieces (shared) , Point Display : Sean
+- Draw Board, Pieces (shared) : Sean
 
 6/2 - Extensive testing, final touches, get ready to present

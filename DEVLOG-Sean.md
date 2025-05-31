@@ -43,3 +43,5 @@ Expanded description:
 - found some really nice pixel sprites, hope they don't bug out when we try to expand them a little to fit board
 - started mouseClicked
 - need to update diagram for Chess class
+
+### 2025-05-31 -
