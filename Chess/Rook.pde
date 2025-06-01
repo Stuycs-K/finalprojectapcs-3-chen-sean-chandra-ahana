@@ -1,7 +1,7 @@
 class Rook extends Piece{
   boolean castle;
-  Queen(boolean isWhite, int[] startPos){
-      super(isWhite, 5, startPos);
+  Rook(boolean isWhite, int[] startPos, Board board){
+      super(isWhite, 5, startPos, board);
       castle = true;
     }
 
@@ -10,13 +10,13 @@ class Rook extends Piece{
     possibleMoves.clear();
     int row = position[0];
     int col = position[1];  
-    direc = new int[]{-1,1,0,0};
-    direc2 = new int[]{0,0,1,-1};
+    int[] direc = {-1, 1, 0, 0};
+    int[] direc2 = {0, 0, 1, -1};
     for(int i = 0; i < 4; i++){
       int r = row + direc[i];
       int c = col + direc2[i];
       while(isWithinBounds(new int[] {r, c})){
-        Piece other = Board[r][c];
+        Piece other = board.grid[r][c];
         if(other == null){
           possibleMoves.add(new int[] {r, c});
         }
@@ -35,5 +35,9 @@ class Rook extends Piece{
   
   boolean canCastle(){
     return castle;
+  }
+  boolean isLegal(int[] go){
+    updateMoves();
+    return contains(go);
   }
 }

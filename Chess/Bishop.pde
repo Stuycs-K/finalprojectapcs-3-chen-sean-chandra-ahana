@@ -1,6 +1,6 @@
 class Bishop extends Piece{
-  Bishop(boolean isWhite, int[] startPos){
-      super(isWhite, 3, startPos);
+  Bishop(boolean isWhite, int[] startPos, Board board){
+      super(isWhite, 3, startPos, board);
     }
 
   
@@ -14,7 +14,7 @@ class Bishop extends Piece{
       int r = row + direc[i];
       int c = col + direc2[i];
       while(isWithinBounds(new int[] {r, c})){
-        Piece other = Board[r][c];
+        Piece other = board.grid[r][c];
         if(other == null){
           possibleMoves.add(new int[] {r, c});
         }
@@ -29,3 +29,8 @@ class Bishop extends Piece{
       }
     }
   }
+  boolean isLegal(int[] go){
+    updateMoves();
+    return contains(go);
+  }
+}
