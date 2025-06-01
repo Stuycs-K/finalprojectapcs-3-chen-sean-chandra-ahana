@@ -1,7 +1,7 @@
 class Knight extends Piece{
 
-  Knight(boolean isWhite, int value, int[] startPosition){
-    super(isWhite, value, startPosition);
+  Knight(boolean isWhite, int value, int[] startPosition, Board board){
+    super(isWhite, value, startPosition, board);
     possibleMoves = new ArrayList<int[]>();
   }
 
@@ -20,7 +20,7 @@ class Knight extends Piece{
       int[] move = {newRow, newCol};
 
       if(isWithinBounds(move)){
-        Piece target = Board.grid[newRow][newCol];
+        Piece target = board.grid[newRow][newCol];
         if(target == null || target.isWhite != this.isWhite){
           possibleMoves.add(move);
         }

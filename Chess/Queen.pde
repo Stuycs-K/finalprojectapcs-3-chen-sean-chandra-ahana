@@ -1,6 +1,6 @@
 class Queen extends Piece{
-  Queen(boolean isWhite, int[] startPos){
-      super(isWhite, 9, startPos);
+  Queen(boolean isWhite, int[] startPos, Board board){
+      super(isWhite, 9, startPos, board);
     }
 
   
@@ -14,7 +14,7 @@ class Queen extends Piece{
       int r = row + direc[i];
       int c = col + direc2[i];
       while(isWithinBounds(new int[] {r, c})){
-        Piece other = Board[r][c];
+        Piece other = board.grid[r][c];
         if(other == null){
           possibleMoves.add(new int[] {r, c});
         }
@@ -35,7 +35,7 @@ class Queen extends Piece{
       int r = row + direc[i];
       int c = col + direc2[i];
       while(isWithinBounds(new int[] {r, c})){
-        Piece other = Board[r][c];
+        Piece other = board.grid[r][c];
         if(other == null){
           possibleMoves.add(new int[] {r, c});
         }
@@ -53,14 +53,16 @@ class Queen extends Piece{
   }
   
   void move(int[] target){
-    int targetRow = target[0];
-    int targetCol = target[1];
         if (isLegal(target)){
-            position[0] = targetRow;
-            position[1] = targetCol;
-            Board[targetRow][targetCol] = this;
-            Board[position[0]][position[1]] = null;
+            board.grid[position[0]][position[1]] = null;
+            position[0] = target[0];
+            position[1] = target[1];
+            board.grid[target[0]][target[1]] = this;
         }
    }
+   boolean isLegal(int[] go){
+    updateMoves();
+    return contains(go);
+  }
   
 }
