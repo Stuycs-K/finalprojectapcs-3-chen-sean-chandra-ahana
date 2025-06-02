@@ -61,7 +61,8 @@ void drawPieces(){
       if(p != null && !p.captured){
         PImage img = loadImage(p.getImageName());
         if (img != null){
-          image(img, x * tile, i * tile, tile, tile);
+          img.resize(70,70);
+          image(img, x * tile+15, i * tile+15);
         } else{
           println("Missing image: " + p.getImageName());
         }
