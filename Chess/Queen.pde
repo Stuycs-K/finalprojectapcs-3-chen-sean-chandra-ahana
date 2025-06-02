@@ -1,6 +1,7 @@
 class Queen extends Piece{
   Queen(boolean isWhite, int[] startPos, Board board){
       super(isWhite, 9, startPos, board);
+      possibleMoves = new ArrayList<int[]>();
     }
 
   

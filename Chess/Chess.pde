@@ -2,6 +2,8 @@ import java.util.ArrayList;
 Board board;
 PImage boardImage;
 int tile = 100;
+Piece selectedPiece = null;
+int[] selectedPos = null;
 
 void setup(){
   size(1920,1080);
@@ -35,6 +37,7 @@ void draw(){
   background(255);
   image(boardImage, 0, 0, tile * 8, tile * 8);
   drawPieces();
+  drawSelection();
   //drawSide();
 }
 
@@ -58,5 +61,37 @@ void drawPieces(){
 
 
 void mouseClicked(){
+  int row = mouseY / tile;
+  int col = mouseX / tile;
+  if (row < 0 || row > 7 || col < 0 || col > 7) return;
+  if (selectedPiece == null){
+    Piece p = board.grid[row][col];
+    if (p != null && !p.captured){
+      selectedPiece = p;
+    selectedPos = new int[]{row, col};
+    selectedPiece.updateMoves();
+  }
+} else{
+int[] destination = new int[]{row, col};
+if (selectedPiece.isLegal(destination)){
+  board.move(selectedPiece, destination[0], destination[1]);
+}
+selectedPiece = null;
+selectedPos = null;
+}
   
+}
+
+void drawSelection(){
+  if (selectedPiece != null){
+    stroke(0, 255, 0);
+    strokeWeight(4);
+    noFill();
+    rect(selectedPos[1] * tile, selectedPos[0] * tile, tile, tile);
+    noStroke();
+    fill(0, 255, 0, 100);
+    for (int[] move : selectedPiece.possibleMoves){
+      ellipse(move[1] * tile + tile / 2, move[0] * tile + tile / 2, tile / 4, tile / 4);
+    }
+  }
 }
