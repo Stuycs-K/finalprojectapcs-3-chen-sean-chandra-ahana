@@ -1,14 +1,12 @@
 import java.util.ArrayList;
 Board board;
-PImage boardImage;
 int tile = 100;
 Piece selectedPiece = null;
 int[] selectedPos = null;
 
 void setup(){
-  size(1920,1080);
+  size(800,800);
   board = new Board();
-  boardImage = loadImage("chessboard.png");
   for(int i = 0; i < 8; i++){
      board.placePiece(new Pawn(true, new int[]{6, i}, board),6,i); 
      board.placePiece(new Pawn(false, new int[]{1, i}, board),1,i);
@@ -34,20 +32,35 @@ void setup(){
 }
 
 void draw(){
-  background(255);
-  image(boardImage, 0, 0, tile * 8, tile * 8);
+  drawBoard();
   drawPieces();
   drawSelection();
   //drawSide();
 }
-
+void drawBoard(){
+  boolean white = true;
+  color c;
+  for(int i = 0; i < 8; i++){
+    for(int x = 0; x < 8; x++){
+      if(white){
+        c = color(255,255,255);
+      }
+      else{
+        c = color(118,150,86);
+      }
+      fill(c);
+      noStroke();  
+      square(i*tile, x*tile,tile);
+      white = !white;
+    }
+  }
+}
 void drawPieces(){
   for(int i = 0; i < 8; i++){
     for(int x = 0; x < 8; x++){
       Piece p = board.grid[i][x];  
       if(p != null && !p.captured){
         PImage img = loadImage(p.getImageName());
-        img.resize(tile,tile);
         if (img != null){
           image(img, x * tile, i * tile, tile, tile);
         } else{
