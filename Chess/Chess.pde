@@ -47,6 +47,7 @@ void drawPieces(){
       Piece p = board.grid[i][x];  
       if(p != null && !p.captured){
         PImage img = loadImage(p.getImageName());
+        img.resize(tile,tile);
         if (img != null){
           image(img, x * tile, i * tile, tile, tile);
         } else{
