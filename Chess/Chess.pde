@@ -8,8 +8,8 @@ void setup(){
   board = new Board();
   boardImage = loadImage("chessboard.png");
   for(int i = 0; i < 8; i++){
-     board.placePiece(new Pawn(true, new int[]{i, 6}, board),i,6); 
-     board.placePiece(new Pawn(false, new int[]{i, 1}, board),i,1);
+     board.placePiece(new Pawn(true, new int[]{6, i}, board),6,i); 
+     board.placePiece(new Pawn(false, new int[]{1, i}, board),1,i);
   }
   board.placePiece(new Rook(false, new int[]{0,7}, board),0,7);
   board.placePiece(new Rook(true, new int[]{7,7}, board),7,7);

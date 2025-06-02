@@ -64,5 +64,9 @@ class Queen extends Piece{
     updateMoves();
     return contains(go);
   }
+  @Override
+  public String toString(){
+    return "queen";
+  }
   
 }
