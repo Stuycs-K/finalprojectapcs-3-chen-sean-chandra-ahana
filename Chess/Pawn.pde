@@ -6,6 +6,7 @@ class Pawn extends Piece{
       super(isWhite, 1, startPos, board);
       this.firstMove = true;
       enPassant = false;
+      possibleMoves = new ArrayList<int[]>();
     }
 
   

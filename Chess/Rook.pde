@@ -3,6 +3,7 @@ class Rook extends Piece{
   Rook(boolean isWhite, int[] startPos, Board board){
       super(isWhite, 5, startPos, board);
       castle = true;
+      possibleMoves = new ArrayList<int[]>();
     }
 
   

@@ -1,6 +1,7 @@
 class Bishop extends Piece{
   Bishop(boolean isWhite, int[] startPos, Board board){
       super(isWhite, 3, startPos, board);
+      possibleMoves = new ArrayList<int[]>();
     }
 
   
