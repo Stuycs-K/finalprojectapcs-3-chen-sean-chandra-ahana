@@ -1,7 +1,7 @@
 class Knight extends Piece{
 
-  Knight(boolean isWhite, int value, int[] startPosition, Board board){
-    super(isWhite, value, startPosition, board);
+  Knight(boolean isWhite, int[] startPosition, Board board){
+    super(isWhite, 3, startPosition, board);
     possibleMoves = new ArrayList<int[]>();
   }
 
