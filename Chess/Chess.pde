@@ -34,15 +34,17 @@ void setup(){
 void draw(){
   background(255);
   drawPieces();
-  drawSide();
+  //drawSide();
 }
 
 void drawPieces(){
   for(int i = 0; i < 8; i++){
     for(int x = 0; x < 8; x++){
-      Piece p = board.Board[i][x];  
+      Piece p = board.grid[i][x];  
       if(p != null && !p.captured){
-        PImage img = loadImage(p.lower());
+        PImage img = loadImage(p.getImageName());
+        image(img, x * tile, i * tile, tile, tile);
+        
       }
     }
   }
