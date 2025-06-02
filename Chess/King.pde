@@ -10,6 +10,7 @@ class King extends Piece{
   }
 
   void updateMoves(){
+    if (board == null || board.grid == null) return;
     possibleMoves.clear();
 
     int[][] directions = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};

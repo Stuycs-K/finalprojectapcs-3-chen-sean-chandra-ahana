@@ -14,7 +14,7 @@ void setup(){
   board.placePiece(new Rook(false, new int[]{0,7}, board),0,7);
   board.placePiece(new Rook(true, new int[]{7,7}, board),7,7);
   board.placePiece(new Rook(false, new int[]{0,0}, board),0,0);
-  board.placePiece(new Rook(true, new int[]{7,0}, board), 0,7);
+  board.placePiece(new Rook(true, new int[]{7,0}, board), 7,0);
   board.placePiece(new Knight(false, new int[]{0,6}, board),0,6);
   board.placePiece(new Knight(true, new int[]{7,6}, board),7,6);
   board.placePiece(new Knight(false, new int[]{0,1}, board),0,1);
@@ -25,8 +25,8 @@ void setup(){
   board.placePiece(new Bishop(true, new int[]{7,2}, board),7,2);
   board.placePiece(new King(true, new int[]{7,4}, board),7,4);
   board.placePiece(new King(false, new int[]{0,4}, board),0,4);
-  board.placePiece(new Queen(true, new int[]{7,4}, board),7,4);
-  board.placePiece(new Queen(false, new int[]{0,4}, board),0,4);
+  board.placePiece(new Queen(true, new int[]{7,3}, board),7,3);
+  board.placePiece(new Queen(false, new int[]{0,3}, board),0,3);
   
   
 }
@@ -43,7 +43,11 @@ void drawPieces(){
       Piece p = board.grid[i][x];  
       if(p != null && !p.captured){
         PImage img = loadImage(p.getImageName());
-        image(img, x * tile, i * tile, tile, tile);
+        if (img != null){
+          image(img, x * tile, i * tile, tile, tile);
+        } else{
+          println("Missing image: " + p.getImageName());
+        }
         
       }
     }

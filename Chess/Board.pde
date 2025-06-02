@@ -10,7 +10,7 @@ class Board {
   void placePiece(Piece piece, int row, int col) {
     if (row >= 0 && row < 8 && col >= 0 && col < 8) {
       grid[row][col] = piece;
-      piece.position = new int[]{row, col};
+      piece.position = new int[]{col, row};
     }
   }
   Piece getPiece(int row, int col) {
