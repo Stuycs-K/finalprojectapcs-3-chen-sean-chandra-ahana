@@ -33,6 +33,7 @@ void setup(){
 
 void draw(){
   background(255);
+  image(boardImage, 0, 0, tile * 8, tile * 8);
   drawPieces();
   //drawSide();
 }
