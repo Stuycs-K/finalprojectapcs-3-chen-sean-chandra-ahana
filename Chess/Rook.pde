@@ -40,4 +40,8 @@ class Rook extends Piece{
     updateMoves();
     return contains(go);
   }
+  @Override
+  public String toString(){
+    return "rook";
+  }
 }

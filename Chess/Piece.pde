@@ -48,20 +48,7 @@ abstract class Piece{
      return false;  
    }
    String getImageName(){
-     String name = "";
-     if (value == 100){
-       name = "king";
-     } else if (value == 9){
-       name = "queen";
-     } else if (value == 5){
-       name = "rook";
-     } else if (value == 4){
-       name = "bishop";
-     } else if (value == 3){
-       name = "knight";
-     } else if (value == 1){
-       name = "pawn";
-     }
+     String name = this.toString();
      if (!isWhite){
        name += "1";
      }
