@@ -1,7 +1,7 @@
 class King extends Piece{
 
-  King(boolean isWhite, int value, int[] startPosition, Board board){
-    super(isWhite, value, startPosition, board);
+  King(boolean isWhite, int[] startPosition, Board board){
+    super(isWhite, 100, startPosition, board);
     possibleMoves = new ArrayList<int[]>();
   }
 
