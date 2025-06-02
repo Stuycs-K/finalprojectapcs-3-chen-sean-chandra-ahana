@@ -38,20 +38,19 @@ void draw(){
   //drawSide();
 }
 void drawBoard(){
-  boolean white = true;
   color c;
   for(int i = 0; i < 8; i++){
     for(int x = 0; x < 8; x++){
-      if(white){
+      if((i + x) % 2 == 0){
         c = color(255,255,255);
       }
       else{
-        c = color(118,150,86);
+       c = color(118, 150, 86);
       }
+      
       fill(c);
       noStroke();  
       square(i*tile, x*tile,tile);
-      white = !white;
     }
   }
 }
