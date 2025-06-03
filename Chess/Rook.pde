@@ -1,8 +1,8 @@
 class Rook extends Piece{
-  boolean castle;
+  boolean firstMove;
   Rook(boolean isWhite, int[] startPos, Board board){
       super(isWhite, 5, startPos, board);
-      castle = true;
+      firstMove = true;
       possibleMoves = new ArrayList<int[]>();
     }
 
@@ -35,7 +35,7 @@ class Rook extends Piece{
   }
   
   boolean canCastle(){
-    return castle;
+    return firstMove;
   }
   boolean isLegal(int[] go){
     updateMoves();
