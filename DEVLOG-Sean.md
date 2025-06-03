@@ -44,4 +44,8 @@ Expanded description:
 - started mouseClicked
 - need to update diagram for Chess class
 
-### 2025-05-31 -
+### 2025-06-02 - overall fixes 
+- made board for chess
+- working with partner to fix correct updatePieces (miscommunication lead to misuse of methods)
+- updated prototype more
+- resized pieces and displayed them
