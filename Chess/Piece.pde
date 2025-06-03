@@ -55,4 +55,6 @@ abstract class Piece{
      name += ".png";
      return name;
    }
+   void afterMove(){
+   }
 }

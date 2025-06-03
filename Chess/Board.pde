@@ -38,5 +38,6 @@ class Board {
 
   piece.position=new int[]{newRow,newCol};
   piece.updateMoves();
+  piece.afterMove();
 }
 }
