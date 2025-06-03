@@ -55,4 +55,5 @@ abstract class Piece{
      name += ".png";
      return name;
    }
+   abstract String toString();
 }
