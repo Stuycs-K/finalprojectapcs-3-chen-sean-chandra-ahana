@@ -33,20 +33,24 @@ class King extends Piece{
       for(int[] i : dir){
         Piece target = board.grid[i[0]][i[1]];
         if(target == null){
-          if(position[1] < 3 && board.grid[position[0]][0].toString
-          possibleMoves.add(i);
+          if(i[1] < 4 && board.grid[position[0]][0].toString().equals("rook")){
+                    possibleMoves.add(i);
+          }
+          if(i[1] >4 && board.grid[position[0]][0].toString().equals("rook")){
+                    possibleMoves.add(i);
+          }
         }
       }
     }
   }
   
   void castle(){
+    int dir = 1;
     if(position[1]<3){
-      if(isWhite){
-        position = new int[]{7,2};
-        board.grid[7][2] = this;
+      if(!isWhite){
+        dir = -1;
       }
-      else{
+      if(contains(new int[]{position[0],position[1] + 2})){
         
       }
     }
