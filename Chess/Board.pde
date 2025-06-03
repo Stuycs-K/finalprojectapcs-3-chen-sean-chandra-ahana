@@ -26,6 +26,9 @@ class Board {
   }
   
   void move(Piece piece,int newRow,int newCol){
+    if (piece.toString().equals("pawn")){
+      piece.move(new int[] {newRow, newCol});
+    }
   int oldRow=piece.position[0];
   int oldCol=piece.position[1];
 
