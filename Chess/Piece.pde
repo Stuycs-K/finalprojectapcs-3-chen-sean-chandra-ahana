@@ -56,4 +56,6 @@ abstract class Piece{
      return name;
    }
    abstract String toString();
+   void afterMove(){
+   }
 }

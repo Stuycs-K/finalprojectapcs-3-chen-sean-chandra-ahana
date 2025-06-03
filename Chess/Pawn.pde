@@ -81,4 +81,8 @@ class Pawn extends Piece{
     public String toString(){
       return "pawn";
     }
+    @Override
+    void afterMove(){
+      firstMove = false;
+    }
 }

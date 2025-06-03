@@ -9,6 +9,8 @@ NOTE: MOST CLASSES WILL BE SUBJECT TO CHANGE FROM THE PROTOTYPE SINCE IT IS NOT 
 
 NOTE TO GROUP: WE NEED TO UPDATE UML DIAGRAMS
 
+- [PM] (post mvp) denotes new changes post mvp
+
 Board Class:
 
 - Piece[][] ~field~ grid - subject to change, we may find having a 2d array better or need a separate "squares" class if things do not work out.
@@ -29,12 +31,14 @@ We will have a counter for the value of the pieces taken.
 - [NEW] updateMoves() abstract method that changes for each child class to update possible moves. Needed to display where pieces can go when we make the procesing stuff.
 - [NEW] boolean isWithinBounds(int[] go) determines if go is in the board. saves time as a helper method for updateMoves.
 - [NEW] contains(int[] go) checks if possibleMoves has int[] go. contains() doesn't work on arraylist of arrays.
+- [NEW] toString() method inherited by every class for easy piece generation and referencing
 
 Pawn:
 - boolean firstMove. Determines if a pawn can move forward two spaces or only one.
 - moves 1 up or one below depending on color. [NEW] MAKE SURE THIS ALSO FIXES FIRST MOVE
 - take() moves 1 space diagonally.
 - value = 1
+- [PM] implement en passant
 
 Bishop:
 - moves diagonally only. no other noticeable features (?)
@@ -55,17 +59,24 @@ Queen:
 - value = 9
 
 King:
-- boolean checked
+- [PM] boolean checked
 	- if checked is ever true there are no legal moves for the player except move king. we can implement a visual indicator that makes the piece's space red.
-- boolean castle
+- [PM] boolean castle
 	- if true can castle. Only is true if the king has not made a move yet.
-- boolean checkmate
+- [PM] boolean checkmate
 	- no legal moves, you lose
 - [NEW] hasMoved() - returns castle
 - [NEW] castle() - calls move and castles the pieces
 We will use an ArrayList to handle moves. This may be inefficient, we can test more options later but the important part is to get things working first. Other ideas include recursion or looping through the whole board.
 
-- [NEW] Uploaded a bunch of sprites from online and a chessboard
+- [NEW] Uploaded a bunch of sprites from online ~and a chessboard~ 
+- [NEW] created own chessboard
+
+A few things post MVP that we have yet to figure out: 
+
+- turns
+- check
+- promotion
 
 
 # Project Design
@@ -88,12 +99,12 @@ It should be noted that these roles are not 100% strict - we will be helping eac
 
 - Piece, Queen, Rook, Bishop, Pawn : Sean :white_check_mark:
 
-- Knight, King, Board : Ahana
+- Knight, King, Board : Ahana :white_check_mark:
 
 5/30 - Processing Complete or Nearly Completed
 
-- Update Board State, Pieces (shared) : Ahana
+- Update Board State, Pieces (shared) : Ahana :white_check_mark:
 
-- Draw Board, Pieces (shared) : Sean
+- Draw Board, Pieces (shared) : Sean :white_check_mark:
 
 6/2 - Extensive testing, final touches, get ready to present
