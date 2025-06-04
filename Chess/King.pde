@@ -45,18 +45,25 @@ class King extends Piece{
   }
   
   void castle(){
-    int dir = 1;
     if(position[1]<3){
-      if(!isWhite){
-        dir = -1;
+      if(contains(new int[]{position[0],position[1] - 2})){
+        board.move(this, position[0],position[1]-2);
+        board.move(board.getPiece(position[0],7),position[0],position[1]-1);
       }
+          if(position[1]>5){
       if(contains(new int[]{position[0],position[1] + 2})){
-        
+        board.move(this, position[0],position[1]+2);
+        board.move(board.getPiece(position[0],7),position[0],position[1]+1);
       }
+    }
     }
   }
   @Override
   public String toString(){
     return "king";
+  }
+  
+  void afterMove(){
+    firstMove=false;
   }
 }

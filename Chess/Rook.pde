@@ -45,4 +45,7 @@ class Rook extends Piece{
   public String toString(){
     return "rook";
   }
+    void afterMove(){
+    firstMove=false;
+  }
 }
