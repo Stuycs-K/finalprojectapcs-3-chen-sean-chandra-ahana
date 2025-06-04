@@ -58,4 +58,5 @@ abstract class Piece{
    abstract String toString();
    void afterMove(){
    }
+   void castle(){}
 }
