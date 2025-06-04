@@ -109,3 +109,27 @@ void drawSelection(){
     }
   }
 }
+
+void promote(Pawn pawn){
+  stroke(0,0,0);
+  fill(255,255,255);
+  rect(pawn.position[1]*tile,pawn.position[0]*tile,tile,4*tile);
+  String white = "";
+  if(!pawn.isWhite){
+    white+=1;
+  }
+    PImage img;
+    img = loadImage("queen"+1);
+    img.resize(70,70);
+    image(img,pawn.position[1]*tile+15,pawn.position[0]*tile+15);
+        img = loadImage("rook"+1);
+    img.resize(70,70);
+    image(img,pawn.position[1]*tile+15,pawn.position[0]*tile+15+tile);
+        img = loadImage("bishop"+1);
+    img.resize(70,70);
+    image(img,pawn.position[1]*tile+15,pawn.position[0]*tile+15+tile*2);
+        img = loadImage("knight"+1);
+    img.resize(70,70);
+    image(img,pawn.position[1]*tile+15,pawn.position[0]*tile+15+tile*3);
+  
+}

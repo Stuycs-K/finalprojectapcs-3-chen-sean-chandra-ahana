@@ -1,12 +1,14 @@
 class Pawn extends Piece{
     boolean firstMove;
     boolean enPassant;
+    boolean canPromote;
 
     Pawn(boolean isWhite, int[] startPos, Board board){
       super(isWhite, 1, startPos, board);
       this.firstMove = true;
       enPassant = false;
       possibleMoves = new ArrayList<int[]>();
+      canPromote = false;
     }
 
   
@@ -84,5 +86,8 @@ class Pawn extends Piece{
     @Override
     void afterMove(){
       firstMove = false;
+    }
+    void reachEnd(){
+      canPromote = true;
     }
 }
