@@ -88,7 +88,7 @@ void mouseClicked(){
 } else{
 int[] destination = new int[]{row, col};
 if (selectedPiece.isLegal(destination)){
-  board.move(selectedPiece, destination[0], destination[1]);
+  selectedPiece.move(destination);
 }
 selectedPiece = null;
 selectedPos = null;
