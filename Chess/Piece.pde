@@ -59,4 +59,5 @@ abstract class Piece{
    void afterMove(){
    }
    void castle(){}
+   void reachEnd(){}
 }
