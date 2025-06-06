@@ -4,6 +4,7 @@ int tile = 100;
 Piece selectedPiece = null;
 int[] selectedPos = null;
 boolean whiteTurn = true;
+boolean promotion = false;
 
 void setup(){
   size(800,800);
@@ -92,9 +93,20 @@ void mouseClicked(){
   int row = mouseY / tile;
   int col = mouseX / tile;
   if (row < 0 || row > 7 || col < 0 || col > 7) return;
+  if(promotion){
+    int x = 0;
+    if(board.getPiece(row,col)!= null && (row == 0 || row == 7)){
+      if(board.getPiece(row,col).toString().equals(pawn)){
+        int z = col;
+        if(isWhite){
+          if(row
+        }
+      }
+    promotion = false;
+  }
   if (selectedPiece == null){
     Piece p = board.grid[row][col];
-    if (p != null && !p.captured && p.isWhite == whiteTurn){
+    if (p != null && !p.captured && p.isWhite == whiteTurn && !promotion){
       selectedPiece = p;
     selectedPos = new int[]{row, col};
     selectedPiece.updateMoves();
@@ -126,6 +138,7 @@ void drawSelection(){
 }
 
 void promote(Piece pawn){
+  promotion = true;
   String white = "";
   int z = 1;
   if(!pawn.isWhite){
