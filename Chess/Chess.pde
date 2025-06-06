@@ -54,14 +54,6 @@ void drawBoard(){
       square(i*tile, x*tile,tile);
     }
   }
-  for(int i = 0; i < 8;i++){
-    if(board.getPiece(0,i).toString().equals("pawn")){
-      promote(board.getPiece(0,i));
-    }
-     if(board.getPiece(7,i).toString().equals("pawn")){
-      promote(board.getPiece(7,i));
-    }
-  }
 }
 void drawPieces(){
   for(int i = 0; i < 8; i++){
@@ -79,7 +71,20 @@ void drawPieces(){
       }
     }
   }
-  }   
+    for(int i = 0; i < 8;i++){
+    {if(board.getPiece(0,i) != null){
+    if(board.getPiece(0,i).toString().equals("pawn")){
+      promote(board.getPiece(0,i));
+    }
+    }
+    if(board.getPiece(7,i) != null){
+     if(board.getPiece(7,i).toString().equals("pawn")){
+      promote(board.getPiece(7,i));
+    }
+  }
+  }
+    }
+}
 
 
 
