@@ -5,6 +5,7 @@ Piece selectedPiece = null;
 int[] selectedPos = null;
 boolean whiteTurn = true;
 boolean promotion = false;
+boolean isWhite;
 
 void setup(){
   size(800,800);
@@ -94,14 +95,31 @@ void mouseClicked(){
   int col = mouseX / tile;
   if (row < 0 || row > 7 || col < 0 || col > 7) return;
   if(promotion){
-    int x = 0;
     if(board.getPiece(row,col)!= null && (row == 0 || row == 7)){
-      if(board.getPiece(row,col).toString().equals(pawn)){
+      if(board.getPiece(row,col).toString().equals("pawn")){
+        isWhite = board.getPiece(row,col).isWhite;
         int z = col;
         if(isWhite){
-          if(row
+           board.removePiece(0,z);
+          if(col == z){
+          if(row == 0){
+            board.placePiece(new Queen(true,new int[]{0,z},board),0,z);
+          }
+          else if(row == 1){
+            board.placePiece(new Rook(true,new int[]{0,z},board),0,z);
+        }
+        else if(row == 2){
+          board.placePiece(new Bishop(true,new int[]{0,z},board),0,z);
+        }
+        else if(row == 3){
+          board.placePiece(new Knight(true,new int[]{0,z},board),0,z);
+        }
         }
       }
+      else{ //copy paste from above for black, this is where you left off on in class
+        
+      }
+    }
     promotion = false;
   }
   if (selectedPiece == null){
@@ -120,7 +138,7 @@ if (selectedPiece.isLegal(destination)){
 selectedPiece = null;
 selectedPos = null;
 }
-  
+  }
 }
 
 void drawSelection(){
