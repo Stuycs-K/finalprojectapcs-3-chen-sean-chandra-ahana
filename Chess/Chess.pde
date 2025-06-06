@@ -54,6 +54,14 @@ void drawBoard(){
       square(i*tile, x*tile,tile);
     }
   }
+  for(int i = 0; i < 8;i++){
+    if(board.getPiece(0,i).toString().equals("pawn")){
+      promote(board.getPiece(0,i));
+    }
+     if(board.getPiece(7,i).toString().equals("pawn")){
+      promote(board.getPiece(7,i));
+    }
+  }
 }
 void drawPieces(){
   for(int i = 0; i < 8; i++){
@@ -112,26 +120,33 @@ void drawSelection(){
   }
 }
 
-void promote(Pawn pawn){
-  stroke(0,0,0);
-  fill(255,255,255);
-  rect(pawn.position[1]*tile,pawn.position[0]*tile,tile,4*tile);
+void promote(Piece pawn){
   String white = "";
+  int z = 1;
   if(!pawn.isWhite){
     white+=1;
+    z=-1;
+  }
+  stroke(0,0,0);
+  fill(255,255,255);
+  if(pawn.isWhite){
+  rect(pawn.position[1]*tile,pawn.position[0]*tile,tile,4*tile);
+  }
+  else{
+  rect(pawn.position[1]*tile,pawn.position[0]*tile,tile,4*tile);
   }
     PImage img;
-    img = loadImage("queen"+1);
+    img = loadImage("queen"+white+".png");
     img.resize(70,70);
-    image(img,pawn.position[1]*tile+15,pawn.position[0]*tile+15);
-        img = loadImage("rook"+1);
+    image(img,pawn.position[1]*tile+15,(pawn.position[0]-4)*tile+15*z);
+        img = loadImage("rook"+white+".png");
     img.resize(70,70);
-    image(img,pawn.position[1]*tile+15,pawn.position[0]*tile+15+tile);
-        img = loadImage("bishop"+1);
+    image(img,pawn.position[1]*tile+15,pawn.position[0]*tile+15*z+tile*z);
+        img = loadImage("bishop"+white+".png");
     img.resize(70,70);
-    image(img,pawn.position[1]*tile+15,pawn.position[0]*tile+15+tile*2);
-        img = loadImage("knight"+1);
+    image(img,pawn.position[1]*tile+15,pawn.position[0]*tile+15*z+tile*2*z);
+        img = loadImage("knight"+white+".png");
     img.resize(70,70);
-    image(img,pawn.position[1]*tile+15,pawn.position[0]*tile+15+tile*3);
+    image(img,pawn.position[1]*tile+15,pawn.position[0]*tile+15*z+tile*3*z);
   
 }
