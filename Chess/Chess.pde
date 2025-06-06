@@ -4,6 +4,8 @@ int tile = 100;
 Piece selectedPiece = null;
 int[] selectedPos = null;
 boolean whiteTurn = true;
+boolean promotion = false;
+boolean isWhite;
 
 void setup(){
   size(800,800);
@@ -54,14 +56,6 @@ void drawBoard(){
       square(i*tile, x*tile,tile);
     }
   }
-  for(int i = 0; i < 8;i++){
-    if(board.getPiece(0,i).toString().equals("pawn")){
-      promote(board.getPiece(0,i));
-    }
-     if(board.getPiece(7,i).toString().equals("pawn")){
-      promote(board.getPiece(7,i));
-    }
-  }
 }
 void drawPieces(){
   for(int i = 0; i < 8; i++){
@@ -79,7 +73,20 @@ void drawPieces(){
       }
     }
   }
-  }   
+    for(int i = 0; i < 8;i++){
+    {if(board.getPiece(0,i) != null){
+    if(board.getPiece(0,i).toString().equals("pawn")){
+      promote(board.getPiece(0,i));
+    }
+    }
+    if(board.getPiece(7,i) != null){
+     if(board.getPiece(7,i).toString().equals("pawn")){
+      promote(board.getPiece(7,i));
+    }
+  }
+  }
+    }
+}
 
 
 
@@ -87,9 +94,37 @@ void mouseClicked(){
   int row = mouseY / tile;
   int col = mouseX / tile;
   if (row < 0 || row > 7 || col < 0 || col > 7) return;
+  if(promotion){
+    if(board.getPiece(row,col)!= null && (row == 0 || row == 7)){
+      if(board.getPiece(row,col).toString().equals("pawn")){
+        isWhite = board.getPiece(row,col).isWhite;
+        int z = col;
+        if(isWhite){
+           board.removePiece(0,z);
+          if(col == z){
+          if(row == 0){
+            board.placePiece(new Queen(true,new int[]{0,z},board),0,z);
+          }
+          else if(row == 1){
+            board.placePiece(new Rook(true,new int[]{0,z},board),0,z);
+        }
+        else if(row == 2){
+          board.placePiece(new Bishop(true,new int[]{0,z},board),0,z);
+        }
+        else if(row == 3){
+          board.placePiece(new Knight(true,new int[]{0,z},board),0,z);
+        }
+        }
+      }
+      else{ //copy paste from above for black, this is where you left off on in class
+        
+      }
+    }
+    promotion = false;
+  }
   if (selectedPiece == null){
     Piece p = board.grid[row][col];
-    if (p != null && !p.captured && p.isWhite == whiteTurn){
+    if (p != null && !p.captured && p.isWhite == whiteTurn && !promotion){
       selectedPiece = p;
     selectedPos = new int[]{row, col};
     selectedPiece.updateMoves();
@@ -103,7 +138,7 @@ if (selectedPiece.isLegal(destination)){
 selectedPiece = null;
 selectedPos = null;
 }
-  
+  }
 }
 
 void drawSelection(){
@@ -121,6 +156,7 @@ void drawSelection(){
 }
 
 void promote(Piece pawn){
+  promotion = true;
   String white = "";
   int z = 1;
   if(!pawn.isWhite){
