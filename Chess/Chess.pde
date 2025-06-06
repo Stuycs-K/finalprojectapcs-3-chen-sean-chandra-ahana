@@ -3,6 +3,7 @@ Board board;
 int tile = 100;
 Piece selectedPiece = null;
 int[] selectedPos = null;
+boolean whiteTurn = true;
 
 void setup(){
   size(800,800);
@@ -80,7 +81,7 @@ void mouseClicked(){
   if (row < 0 || row > 7 || col < 0 || col > 7) return;
   if (selectedPiece == null){
     Piece p = board.grid[row][col];
-    if (p != null && !p.captured){
+    if (p != null && !p.captured && p.isWhite == whiteTurn){
       selectedPiece = p;
     selectedPos = new int[]{row, col};
     selectedPiece.updateMoves();
@@ -89,6 +90,7 @@ void mouseClicked(){
 int[] destination = new int[]{row, col};
 if (selectedPiece.isLegal(destination)){
   selectedPiece.move(destination);
+  whiteTurn = !whiteTurn;
 }
 selectedPiece = null;
 selectedPos = null;
