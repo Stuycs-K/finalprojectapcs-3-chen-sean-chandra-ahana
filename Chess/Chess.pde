@@ -6,6 +6,8 @@ int[] selectedPos = null;
 boolean whiteTurn = true;
 boolean promotion = false;
 boolean isWhite;
+int promotionCol;  
+Piece promotionPiece = null;
 
 void setup(){
   size(800,800);
@@ -38,13 +40,15 @@ void draw(){
   drawBoard();
   drawPieces();
   drawSelection();
-  //drawSide();
+  if(promotion && !(promotionPiece == null)){
+    promote(promotionPiece);
+    }
 }
 void drawBoard(){
   color c;
-  for(int i = 0; i < 8; i++){
-    for(int x = 0; x < 8; x++){
-      if((i + x) % 2 == 0){
+  for(int row = 0; row < 8; row++){
+    for(int col = 0; col < 8; col++){
+      if((row + col) % 2 == 0){
         c = color(255,255,255);
       }
       else{
@@ -53,7 +57,7 @@ void drawBoard(){
       
       fill(c);
       noStroke();  
-      square(i*tile, x*tile,tile);
+      square(col*tile, row*tile,tile);
     }
   }
 }
@@ -73,19 +77,6 @@ void drawPieces(){
       }
     }
   }
-    for(int i = 0; i < 8;i++){
-    {if(board.getPiece(0,i) != null){
-    if(board.getPiece(0,i).toString().equals("pawn")){
-      promote(board.getPiece(0,i));
-    }
-    }
-    if(board.getPiece(7,i) != null){
-     if(board.getPiece(7,i).toString().equals("pawn")){
-      promote(board.getPiece(7,i));
-    }
-  }
-  }
-    }
 }
 
 
@@ -93,34 +84,47 @@ void drawPieces(){
 void mouseClicked(){
   int row = mouseY / tile;
   int col = mouseX / tile;
+  int z = promotionCol;
   if (row < 0 || row > 7 || col < 0 || col > 7) return;
   if(promotion){
-    if(board.getPiece(row,col)!= null && (row == 0 || row == 7)){
-      if(board.getPiece(row,col).toString().equals("pawn")){
-        isWhite = board.getPiece(row,col).isWhite;
-        int z = col;
-        if(isWhite){
-           board.removePiece(0,z);
-          if(col == z){
-          if(row == 0){
-            board.placePiece(new Queen(true,new int[]{0,z},board),0,z);
-          }
-          else if(row == 1){
-            board.placePiece(new Rook(true,new int[]{0,z},board),0,z);
-        }
-        else if(row == 2){
-          board.placePiece(new Bishop(true,new int[]{0,z},board),0,z);
-        }
-        else if(row == 3){
-          board.placePiece(new Knight(true,new int[]{0,z},board),0,z);
-        }
-        }
+    if(col == promotionCol){
+    if(isWhite && row >= 0 && row <= 3){
+      board.removePiece(0,z);
+      if(row == 0){
+        board.placePiece(new Queen(true, new int[]{0,z},board),0,z);
       }
-      else{ //copy paste from above for black, this is where you left off on in class
-        
+      else if(row == 1){
+        board.placePiece(new Rook(true, new int[]{0,z},board),0,z);
       }
+      else if(row == 2){
+        board.placePiece(new Bishop(true, new int[]{0,z},board),0,z);
+      }
+      else if(row == 3){
+        board.placePiece(new Knight(true, new int[]{0,z},board),0,z);
+      }
+          promotion = false;
+          promotionPiece = null;
     }
-    promotion = false;
+    
+    else if(!isWhite && row >= 4 && row <= 7){
+      board.removePiece(7,z);
+      if(row == 4){
+        board.placePiece(new Queen(false, new int[]{7,z},board),7,z);
+      }
+      else if(row == 5){
+        board.placePiece(new Rook(false, new int[]{7,z},board),7,z);
+      }
+      else if(row == 6){
+        board.placePiece(new Bishop(false, new int[]{7,z},board),7,z);
+      }
+      else if(row == 7){
+        board.placePiece(new Knight(false, new int[]{7,z},board),7,z);
+      }
+          promotion = false;
+          promotionPiece = null;
+    }
+    }
+    return;
   }
   if (selectedPiece == null){
     Piece p = board.grid[row][col];
@@ -133,13 +137,26 @@ void mouseClicked(){
 int[] destination = new int[]{row, col};
 if (selectedPiece.isLegal(destination)){
   selectedPiece.move(destination);
+    if(selectedPiece.toString().equals("pawn")){
+      if(destination[0] == 0 && selectedPiece.isWhite){
+    isWhite = true;
+        promotion = true;
+        promotionCol = selectedPiece.position[1];
+        promotionPiece = selectedPiece;
+  }
+  else if(!selectedPiece.isWhite && destination[0] == 7){
+    isWhite = false;
+    promotion = true;
+    promotionCol = selectedPiece.position[1];
+    promotionPiece = selectedPiece;
+  }
+    }
   whiteTurn = !whiteTurn;
 }
 selectedPiece = null;
 selectedPos = null;
 }
   }
-}
 
 void drawSelection(){
   if (selectedPiece != null){
@@ -156,33 +173,42 @@ void drawSelection(){
 }
 
 void promote(Piece pawn){
-  promotion = true;
-  String white = "";
-  int z = 1;
-  if(!pawn.isWhite){
-    white+=1;
-    z=-1;
-  }
-  stroke(0,0,0);
-  fill(255,255,255);
-  if(pawn.isWhite){
-  rect(pawn.position[1]*tile,pawn.position[0]*tile,tile,4*tile);
-  }
-  else{
-  rect(pawn.position[1]*tile,pawn.position[0]*tile,tile,4*tile);
-  }
-    PImage img;
-    img = loadImage("queen"+white+".png");
-    img.resize(70,70);
-    image(img,pawn.position[1]*tile+15,(pawn.position[0]-4)*tile+15*z);
-        img = loadImage("rook"+white+".png");
-    img.resize(70,70);
-    image(img,pawn.position[1]*tile+15,pawn.position[0]*tile+15*z+tile*z);
-        img = loadImage("bishop"+white+".png");
-    img.resize(70,70);
-    image(img,pawn.position[1]*tile+15,pawn.position[0]*tile+15*z+tile*2*z);
-        img = loadImage("knight"+white+".png");
-    img.resize(70,70);
-    image(img,pawn.position[1]*tile+15,pawn.position[0]*tile+15*z+tile*3*z);
+  int col = pawn.position[1];
+  stroke(0);
+  fill(255);
   
+  if(pawn.isWhite){
+    rect(col*tile, 0, tile, 4*tile);
+  }
+  else if(!pawn.isWhite){
+    rect(col*tile, 4*tile, tile, 4*tile);
+  }
+  if(pawn.isWhite){
+    PImage img = loadImage("queen.png");
+    img.resize(70,70);
+    image(img, col*tile +15, 15);
+    img = loadImage("rook.png");
+    img.resize(70,70);
+    image(img, col*tile +15, tile + 15);
+    img = loadImage("bishop.png");
+    img.resize(70,70);
+    image(img, col*tile +15, 2* tile + 15);
+    img = loadImage("knight.png");
+    img.resize(70,70);
+    image(img, col*tile +15, 3 *tile + 15);
+  }
+  else if(!pawn.isWhite){
+    PImage img = loadImage("queen1.png");
+    img.resize(70,70);
+    image(img, col*tile +15, 4*tile + 15);
+    img = loadImage("rook1.png");
+    img.resize(70,70);
+    image(img, col*tile +15, 5* tile + 15);
+    img = loadImage("bishop1.png");
+    img.resize(70,70);
+    image(img, col*tile +15, 6* tile + 15);
+    img = loadImage("knight1.png");
+    img.resize(70,70);
+    image(img, col*tile +15, 7 *tile + 15);
+  }
 }

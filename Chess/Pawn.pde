@@ -65,11 +65,17 @@ class Pawn extends Piece{
             position[1] = targetCol;
             firstMove = false;
         }
-        if(isWhite && position[1] == 0){
-          promote(this);
+        if(isWhite && targetRow == 0){
+          promotion = true;
+          promotionPiece = this;
+          promotionCol = targetCol;
+          isWhite=true;
         }
-        if(!isWhite && position[1] == 7){
-          promote(this);
+        if(!isWhite && targetCol == 7){
+          promotion = true;
+          promotionPiece = this;
+          promotionCol = targetCol;
+          isWhite=false;
         }
     }
 
