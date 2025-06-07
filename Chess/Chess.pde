@@ -76,11 +76,13 @@ void drawPieces(){
     for(int i = 0; i < 8;i++){
     {if(board.getPiece(0,i) != null){
     if(board.getPiece(0,i).toString().equals("pawn")){
+      isWhite = true;
       promote(board.getPiece(0,i));
     }
     }
     if(board.getPiece(7,i) != null){
      if(board.getPiece(7,i).toString().equals("pawn")){
+       isWhite = false;
       promote(board.getPiece(7,i));
     }
   }
@@ -95,32 +97,39 @@ void mouseClicked(){
   int col = mouseX / tile;
   if (row < 0 || row > 7 || col < 0 || col > 7) return;
   if(promotion){
-    if(board.getPiece(row,col)!= null && (row == 0 || row == 7)){
-      if(board.getPiece(row,col).toString().equals("pawn")){
-        isWhite = board.getPiece(row,col).isWhite;
-        int z = col;
-        if(isWhite){
-           board.removePiece(0,z);
-          if(col == z){
-          if(row == 0){
-            board.placePiece(new Queen(true,new int[]{0,z},board),0,z);
-          }
-          else if(row == 1){
-            board.placePiece(new Rook(true,new int[]{0,z},board),0,z);
-        }
-        else if(row == 2){
-          board.placePiece(new Bishop(true,new int[]{0,z},board),0,z);
-        }
-        else if(row == 3){
-          board.placePiece(new Knight(true,new int[]{0,z},board),0,z);
-        }
-        }
+    int z = col;
+    if(isWhite && row >= 0 && row <= 3){
+      board.removePiece(0,z);
+      if(row == 0){
+        board.placePiece(new Queen(true, new int[]{0,z},board),0,z);
       }
-      else{ //copy paste from above for black, this is where you left off on in class
-        
+      else if(row == 1){
+        board.placePiece(new Rook(true, new int[]{0,z},board),0,z);
       }
+      else if(row == 2){
+        board.placePiece(new Bishop(true, new int[]{0,z},board),0,z);
+      }
+      else if(row == 3){
+        board.placePiece(new Knight(true, new int[]{0,z},board),0,z);
+      }
+          promotion = false;
     }
-    promotion = false;
+    
+    else if(!isWhite && row >= 4 && row <= 7){
+      if(row == 4){
+        board.placePiece(new Queen(true, new int[]{7,z},board),7,z);
+      }
+      else if(row == 5){
+        board.placePiece(new Rook(true, new int[]{7,z},board),7,z);
+      }
+      else if(row == 6){
+        board.placePiece(new Bishop(true, new int[]{7,z},board),7,z);
+      }
+      else if(row == 7){
+        board.placePiece(new Knight(true, new int[]{7,z},board),7,z);
+      }
+          promotion = false;
+    }
   }
   if (selectedPiece == null){
     Piece p = board.grid[row][col];
@@ -139,7 +148,6 @@ selectedPiece = null;
 selectedPos = null;
 }
   }
-}
 
 void drawSelection(){
   if (selectedPiece != null){
@@ -157,32 +165,10 @@ void drawSelection(){
 
 void promote(Piece pawn){
   promotion = true;
-  String white = "";
-  int z = 1;
-  if(!pawn.isWhite){
-    white+=1;
-    z=-1;
-  }
-  stroke(0,0,0);
-  fill(255,255,255);
+  int col = pawn.position[1];
+  stroke(0);
+  fill(255);
   if(pawn.isWhite){
-  rect(pawn.position[1]*tile,pawn.position[0]*tile,tile,4*tile);
-  }
-  else{
-  rect(pawn.position[1]*tile,pawn.position[0]*tile,tile,4*tile);
-  }
-    PImage img;
-    img = loadImage("queen"+white+".png");
-    img.resize(70,70);
-    image(img,pawn.position[1]*tile+15,(pawn.position[0]-4)*tile+15*z);
-        img = loadImage("rook"+white+".png");
-    img.resize(70,70);
-    image(img,pawn.position[1]*tile+15,pawn.position[0]*tile+15*z+tile*z);
-        img = loadImage("bishop"+white+".png");
-    img.resize(70,70);
-    image(img,pawn.position[1]*tile+15,pawn.position[0]*tile+15*z+tile*2*z);
-        img = loadImage("knight"+white+".png");
-    img.resize(70,70);
-    image(img,pawn.position[1]*tile+15,pawn.position[0]*tile+15*z+tile*3*z);
   
+  }
 }
