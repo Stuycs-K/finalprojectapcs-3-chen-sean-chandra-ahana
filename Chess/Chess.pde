@@ -6,6 +6,7 @@ int[] selectedPos = null;
 boolean whiteTurn = true;
 boolean promotion = false;
 boolean isWhite;
+int promotionCol;  
 
 void setup(){
   size(800,800);
@@ -38,7 +39,19 @@ void draw(){
   drawBoard();
   drawPieces();
   drawSelection();
-  //drawSide();
+  if(promotion){
+    int row;
+    if(isWhite){
+      row = 0;
+    }
+    else{
+      row = 7;
+    }
+    Piece p = board.getPiece(row,promotionCol);
+    if(p!=null){
+    promote(p);
+    }
+  }
 }
 void drawBoard(){
   color c;
@@ -73,21 +86,6 @@ void drawPieces(){
       }
     }
   }
-    for(int i = 0; i < 8;i++){
-    {if(board.getPiece(0,i) != null){
-    if(board.getPiece(0,i).toString().equals("pawn")){
-      isWhite = true;
-      promote(board.getPiece(0,i));
-    }
-    }
-    if(board.getPiece(7,i) != null){
-     if(board.getPiece(7,i).toString().equals("pawn")){
-       isWhite = false;
-      promote(board.getPiece(7,i));
-    }
-  }
-  }
-    }
 }
 
 
@@ -95,9 +93,10 @@ void drawPieces(){
 void mouseClicked(){
   int row = mouseY / tile;
   int col = mouseX / tile;
+  int z = promotionCol;
   if (row < 0 || row > 7 || col < 0 || col > 7) return;
   if(promotion){
-    int z = col;
+    if(col == promotionCol){
     if(isWhite && row >= 0 && row <= 3){
       board.removePiece(0,z);
       if(row == 0){
@@ -116,19 +115,21 @@ void mouseClicked(){
     }
     
     else if(!isWhite && row >= 4 && row <= 7){
+      board.removePiece(7,z);
       if(row == 4){
-        board.placePiece(new Queen(true, new int[]{7,z},board),7,z);
+        board.placePiece(new Queen(false, new int[]{7,z},board),7,z);
       }
       else if(row == 5){
-        board.placePiece(new Rook(true, new int[]{7,z},board),7,z);
+        board.placePiece(new Rook(false, new int[]{7,z},board),7,z);
       }
       else if(row == 6){
-        board.placePiece(new Bishop(true, new int[]{7,z},board),7,z);
+        board.placePiece(new Bishop(false, new int[]{7,z},board),7,z);
       }
       else if(row == 7){
-        board.placePiece(new Knight(true, new int[]{7,z},board),7,z);
+        board.placePiece(new Knight(false, new int[]{7,z},board),7,z);
       }
           promotion = false;
+    }
     }
     return;
   }
@@ -143,6 +144,18 @@ void mouseClicked(){
 int[] destination = new int[]{row, col};
 if (selectedPiece.isLegal(destination)){
   selectedPiece.move(destination);
+    if(selectedPiece.toString().equals("pawn")){
+      if(selectedPiece.position[0] == 0 && selectedPiece.isWhite){
+    isWhite = true;
+        promotion = true;
+        promotionCol = selectedPiece.position[1];
+  }
+  else if(!selectedPiece.isWhite && selectedPiece.position[0] == 7){
+    isWhite = false;
+    promotion = true;
+    promotionCol = selectedPiece.position[1];
+  }
+    }
   whiteTurn = !whiteTurn;
 }
 selectedPiece = null;
@@ -165,7 +178,6 @@ void drawSelection(){
 }
 
 void promote(Piece pawn){
-  promotion = true;
   int col = pawn.position[1];
   stroke(0);
   fill(255);
