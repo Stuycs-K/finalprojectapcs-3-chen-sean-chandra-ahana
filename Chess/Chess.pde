@@ -130,6 +130,7 @@ void mouseClicked(){
       }
           promotion = false;
     }
+    return;
   }
   if (selectedPiece == null){
     Piece p = board.grid[row][col];
@@ -168,7 +169,39 @@ void promote(Piece pawn){
   int col = pawn.position[1];
   stroke(0);
   fill(255);
-  if(pawn.isWhite){
   
+  if(pawn.isWhite){
+    rect(col*tile, 0, tile, 4*tile);
+  }
+  else if(!pawn.isWhite){
+    rect(col*tile, 4*tile, tile, 4*tile);
+  }
+  if(pawn.isWhite){
+    PImage img = loadImage("queen.png");
+    img.resize(70,70);
+    image(img, col*tile +15, 15);
+    img = loadImage("rook.png");
+    img.resize(70,70);
+    image(img, col*tile +15, tile + 15);
+    img = loadImage("bishop.png");
+    img.resize(70,70);
+    image(img, col*tile +15, 2* tile + 15);
+    img = loadImage("knight.png");
+    img.resize(70,70);
+    image(img, col*tile +15, 3 *tile + 15);
+  }
+  else if(!pawn.isWhite){
+    PImage img = loadImage("queen1.png");
+    img.resize(70,70);
+    image(img, col*tile +15, 4*tile + 15);
+    img = loadImage("rook1.png");
+    img.resize(70,70);
+    image(img, col*tile +15, 5* tile + 15);
+    img = loadImage("bishop1.png");
+    img.resize(70,70);
+    image(img, col*tile +15, 6* tile + 15);
+    img = loadImage("knight1.png");
+    img.resize(70,70);
+    image(img, col*tile +15, 7 *tile + 15);
   }
 }
