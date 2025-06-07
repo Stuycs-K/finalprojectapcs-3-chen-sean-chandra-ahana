@@ -7,6 +7,7 @@ boolean whiteTurn = true;
 boolean promotion = false;
 boolean isWhite;
 int promotionCol;  
+Piece promotionPiece = null;
 
 void setup(){
   size(800,800);
@@ -39,25 +40,15 @@ void draw(){
   drawBoard();
   drawPieces();
   drawSelection();
-  if(promotion){
-    int row;
-    if(isWhite){
-      row = 0;
+  if(promotion && !(promotionPiece == null)){
+    promote(promotionPiece);
     }
-    else{
-      row = 7;
-    }
-    Piece p = board.getPiece(row,promotionCol);
-    if(p!=null){
-    promote(p);
-    }
-  }
 }
 void drawBoard(){
   color c;
-  for(int i = 0; i < 8; i++){
-    for(int x = 0; x < 8; x++){
-      if((i + x) % 2 == 0){
+  for(int row = 0; row < 8; row++){
+    for(int col = 0; col < 8; col++){
+      if((row + col) % 2 == 0){
         c = color(255,255,255);
       }
       else{
@@ -66,7 +57,7 @@ void drawBoard(){
       
       fill(c);
       noStroke();  
-      square(i*tile, x*tile,tile);
+      square(col*tile, row*tile,tile);
     }
   }
 }
@@ -112,6 +103,7 @@ void mouseClicked(){
         board.placePiece(new Knight(true, new int[]{0,z},board),0,z);
       }
           promotion = false;
+          promotionPiece = null;
     }
     
     else if(!isWhite && row >= 4 && row <= 7){
@@ -129,6 +121,7 @@ void mouseClicked(){
         board.placePiece(new Knight(false, new int[]{7,z},board),7,z);
       }
           promotion = false;
+          promotionPiece = null;
     }
     }
     return;
@@ -145,15 +138,17 @@ int[] destination = new int[]{row, col};
 if (selectedPiece.isLegal(destination)){
   selectedPiece.move(destination);
     if(selectedPiece.toString().equals("pawn")){
-      if(selectedPiece.position[0] == 0 && selectedPiece.isWhite){
+      if(destination[0] == 0 && selectedPiece.isWhite){
     isWhite = true;
         promotion = true;
         promotionCol = selectedPiece.position[1];
+        promotionPiece = selectedPiece;
   }
-  else if(!selectedPiece.isWhite && selectedPiece.position[0] == 7){
+  else if(!selectedPiece.isWhite && destination[0] == 7){
     isWhite = false;
     promotion = true;
     promotionCol = selectedPiece.position[1];
+    promotionPiece = selectedPiece;
   }
     }
   whiteTurn = !whiteTurn;
