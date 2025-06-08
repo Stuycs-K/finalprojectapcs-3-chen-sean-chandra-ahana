@@ -104,6 +104,7 @@ void mouseClicked(){
   int col = mouseX / tile;
   int z = promotionCol;
   if (row < 0 || row > 7 || col < 0 || col > 7) return;
+  if(!promotion) promotionPiece = null;
   if(promotion){
     if(col == promotionCol){
     if(isWhite && row >= 0 && row <= 3){
@@ -179,15 +180,21 @@ if (selectedPiece.isLegal(destination)){
       if(destination[0] == 0 && selectedPiece.isWhite){
     isWhite = true;
         promotion = true;
-        promotionCol = selectedPiece.position[1];
+        promotionCol = destination[1];
         promotionPiece = selectedPiece;
   }
   else if(!selectedPiece.isWhite && destination[0] == 7){
     isWhite = false;
     promotion = true;
-    promotionCol = selectedPiece.position[1];
+    promotionCol = destination[1];
     promotionPiece = selectedPiece;
   }
+  else{
+    promotionPiece = null;
+  }
+    }
+    else{
+      promotionPiece = null;
     }
   whiteTurn = !whiteTurn;
   } else{
