@@ -46,4 +46,35 @@ class Board {
   piece.updateMoves();
   piece.afterMove();
 }
+
+boolean isInCheck(boolean white){
+  int[] kingPos = findKing(white);
+  for (int r = 0; r < 8; r++){
+    for (int c = 0; c < 8; c++){
+      Piece p = grid[r][c];
+      if (p != null && p.isWhite != white && !p.captured){
+        p.updateMoves();
+        for (int[] move : p.possibleMoves){
+          if (move[0] == kingPos[0] && move[1] == kingPos[1]){
+            return true;
+          }
+        }
+      }
+    }
+  }
+  return false;
+}
+
+int[] findKing(boolean white){
+  for (int r = 0; r < 8; r++){
+    for (int c = 0; c < 8; c++){
+      Piece p = grid[r][c];
+      if (p != null && p.toString().equals("king") && p.isWhite == white){
+        return new int[]{r, c};
+      }
+    }
+  }
+  return null;
+}
+
 }
