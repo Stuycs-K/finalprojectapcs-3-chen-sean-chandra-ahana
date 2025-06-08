@@ -157,7 +157,11 @@ if (selectedPiece.isLegal(destination)){
   if(selectedPiece.toString().equals("king") && selectedPiece.firstMove){
     int desCol = destination[1];
     if(desCol == 6 || desCol == 2){
-      selectedPiece.castle();
+      selectedPiece.castle(desCol == 6); // 6 is kingside
+      whiteTurn = !whiteTurn;
+      selectedPiece = null;
+      selectedPos = null;
+      return;
     }
   }
   int[] originalPos = new int[]{selectedPiece.position[0], selectedPiece.position[1]};
