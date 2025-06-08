@@ -77,6 +77,25 @@ void drawPieces(){
       }
     }
   }
+  if (board.isInCheck(true)){
+  highlightKing(true);
+}
+if (board.isInCheck(false)){
+  highlightKing(false);
+}
+}
+
+void highlightKing(boolean white){
+  for (int i = 0; i < 8; i++){
+    for (int j = 0; j < 8; j++){
+      Piece p = board.grid[i][j];
+      if (p != null && p.toString().equals("king") && p.isWhite == white && !p.captured){
+        fill(255, 0, 0, 100);
+        noStroke();
+        rect(j * tile, i * tile, tile, tile);
+      }
+    }
+  }
 }
 
 
