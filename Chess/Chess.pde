@@ -99,7 +99,6 @@ void highlightKing(boolean white){
 }
 
 
-
 void mouseClicked(){
   int row = mouseY / tile;
   int col = mouseX / tile;
@@ -155,6 +154,16 @@ void mouseClicked(){
 } else{
 int[] destination = new int[]{row, col};
 if (selectedPiece.isLegal(destination)){
+  int[] originalPos = new int[]{selectedPiece.position[0], selectedPiece.position[1]};
+      Piece target = board.grid[destination[0]][destination[1]];
+      board.grid[originalPos[0]][originalPos[1]] = null;
+      board.grid[destination[0]][destination[1]] = selectedPiece;
+      selectedPiece.position = destination;
+      boolean inCheck = board.isInCheck(whiteTurn);
+      selectedPiece.position = originalPos;
+      board.grid[originalPos[0]][originalPos[1]] = selectedPiece;
+      board.grid[destination[0]][destination[1]] = target;
+      if (!inCheck){
   selectedPiece.move(destination);
     if(selectedPiece.toString().equals("pawn")){
       if(destination[0] == 0 && selectedPiece.isWhite){
@@ -171,6 +180,9 @@ if (selectedPiece.isLegal(destination)){
   }
     }
   whiteTurn = !whiteTurn;
+  } else{
+    println("Illegal move: King would still be in check.");
+  }
 }
 selectedPiece = null;
 selectedPos = null;
