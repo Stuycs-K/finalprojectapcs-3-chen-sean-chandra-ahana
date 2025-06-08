@@ -154,6 +154,12 @@ void mouseClicked(){
 } else{
 int[] destination = new int[]{row, col};
 if (selectedPiece.isLegal(destination)){
+  if(selectedPiece.toString().equals("king") && selectedPiece.firstMove){
+    int desCol = destination[1];
+    if(desCol == 6 || desCol == 2){
+      selectedPiece.castle();
+    }
+  }
   int[] originalPos = new int[]{selectedPiece.position[0], selectedPiece.position[1]};
       Piece target = board.grid[destination[0]][destination[1]];
       board.grid[originalPos[0]][originalPos[1]] = null;

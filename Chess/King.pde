@@ -29,6 +29,7 @@ class King extends Piece{
       }
     }
     if(firstMove){
+      int row = position[0];
       int[][] dir = {{position[0],position[1]-1},{position[0],position[1]-2},{position[0],position[1]+1},{position[0],position[1]+2}};
       for(int[] i : dir){
         Piece target = board.grid[i[0]][i[1]];
@@ -44,19 +45,24 @@ class King extends Piece{
     }
   }
   
-  void castle(){
-    if(position[1]<3){
-      if(contains(new int[]{position[0],position[1] - 2})){
-        board.move(this, position[0],position[1]-2);
-        board.move(board.getPiece(position[0],7),position[0],position[1]-1);
-      }
-          if(position[1]>5){
-      if(contains(new int[]{position[0],position[1] + 2})){
-        board.move(this, position[0],position[1]+2);
-        board.move(board.getPiece(position[0],7),position[0],position[1]+1);
+  void castle(boolean kingSide){
+    if(kingSide){
+      board.move(this,position[0],6);
+    }
+    Piece rook = board.grid[position[0]][7];
+    board.move(rook,position[0],5);
+    if(rook != null && rook.toString().equals("rook")){
+      rook.afterMove();
+    }
+    else{
+      board.move(this,position[0],2);
+      rook = board.grid[position[0]][0];
+      board.move(rook,position[0],3);
+      if(rook != null && rook.toString().equals("rook")){
+        rook.afterMove();
       }
     }
-    }
+    this.afterMove();
   }
   @Override
   public String toString(){
