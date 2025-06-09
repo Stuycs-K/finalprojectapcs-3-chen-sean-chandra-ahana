@@ -5,6 +5,7 @@ abstract class Piece{
   int[] position;
   ArrayList<int[]> possibleMoves;
   boolean firstMove;
+  boolean enPassant;
   Board board;
   Piece(boolean isWhite, int value, int[] startPosition, Board board){
     this.isWhite = isWhite;

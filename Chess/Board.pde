@@ -1,4 +1,5 @@
 class Board {
+  Pawn lastPawn = null;
   Piece[][] grid = new Piece[8][8];
   Board(){
     for (int row = 0; row < 8; row++){
