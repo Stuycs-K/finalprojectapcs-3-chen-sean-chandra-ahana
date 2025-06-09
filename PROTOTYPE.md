@@ -38,7 +38,6 @@ Pawn:
 - moves 1 up or one below depending on color. [NEW] MAKE SURE THIS ALSO FIXES FIRST MOVE
 - take() moves 1 space diagonally.
 - value = 1
-- [PM] implement en passant
 
 Bishop:
 - moves diagonally only. no other noticeable features (?)
@@ -81,9 +80,10 @@ A few things post MVP that we have yet to figure out:
 
 # Project Design
 
-UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
+UML Diagrams and descriptions of key algorithms, classes, and how things fit together. 
 ![UML Diagram](ChessGame.drawio.png)
 
+NOTE: THE UML DIAGRAM IS A PROTOTYPE AND DOES NOT CONTAIN ALL NEW METHODS.
 
 # Intended pacing:
 
@@ -107,4 +107,4 @@ It should be noted that these roles are not 100% strict - we will be helping eac
 
 - Draw Board, Pieces (shared) : Sean :white_check_mark:
 
-6/2 - Extensive testing, final touches, get ready to present
+6/2 - Extensive testing, final touches, get ready to present :white_check_mark: ALL DONE!
