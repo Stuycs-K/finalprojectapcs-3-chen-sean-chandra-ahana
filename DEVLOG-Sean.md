@@ -76,3 +76,4 @@ Expanded description:
 - fixed up a few methods in other classes that crashed with null pointer errors when I made custom boards
 - wrote enPassant
 
+I believe this document accurately reflects the contributions of my teammate.
