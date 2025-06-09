@@ -246,7 +246,10 @@ if (selectedPiece.isLegal(destination)){
     else{
       promotionPiece = null;
     }
-  whiteTurn = !whiteTurn;
+    if(!(selectedPiece.toString().equals("pawn") && Math.abs(destination[0] - originalPos[0]) == 2)){
+      board.lastPawn = selectedPiece;
+    }
+    whiteTurn = !whiteTurn;
   } else{
     println("Illegal move: King would still be in check.");
   }

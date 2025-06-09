@@ -34,7 +34,8 @@ class Pawn extends Piece{
         board.grid[move[0] - direction][col] == null){
           possibleMoves.add(move);
         }
-        move = new int[] {row + direction, col + 1};
+        if(col+1<8){
+         move = new int[] {row + direction, col + 1};
         if(isWithinBounds(move)){
           Piece target = board.grid[move[0]][move[1]];
           if(target != null && target.isWhite != this.isWhite){
@@ -49,6 +50,8 @@ class Pawn extends Piece{
             }
           }
         }
+        }
+        if(col-1 >= 0){
         move = new int[] {row + direction, col - 1};
         if(isWithinBounds(move)){
           Piece target = board.grid[move[0]][move[1]];
@@ -63,7 +66,8 @@ class Pawn extends Piece{
               }
             }
           }
-        }        
+        }
+        }
   }
 
     void move(int[] target){
@@ -75,7 +79,6 @@ class Pawn extends Piece{
                 board.lastPawn = this;
             } else{
                 this.enPassant = false;
-                board.lastPawn = null;
             }
             if(Math.abs(targetCol - position[1]) == 1 && board.grid[targetRow][targetCol] == null){
               Piece tarPawn = board.grid[position[0]][targetCol];

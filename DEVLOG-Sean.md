@@ -74,4 +74,5 @@ Expanded description:
 - promotion had a weird bug where the 8th pawn was randomly promoting the white rook in the same column, fixed the error (indexing error)
 - wrote custom boards 
 - fixed up a few methods in other classes that crashed with null pointer errors when I made custom boards
+- wrote enPassant
 
