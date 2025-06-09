@@ -43,6 +43,9 @@ class Board {
 
 boolean isInCheck(boolean white){
   int[] kingPos = findKing(white);
+  if(kingPos == null){
+  return false;
+  }
   for (int r = 0; r < 8; r++){
     for (int c = 0; c < 8; c++){
       Piece p = grid[r][c];
