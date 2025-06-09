@@ -71,7 +71,7 @@ class Pawn extends Piece{
           promotionCol = targetCol;
           isWhite=true;
         }
-        if(!isWhite && targetCol == 7){
+        if(!isWhite && targetRow == 7){
           promotion = true;
           promotionPiece = this;
           promotionCol = targetCol;

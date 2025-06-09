@@ -26,12 +26,6 @@ class Board {
   }
   
   void move(Piece piece,int newRow,int newCol){
-     if (piece.toString().equals("king")){
-      piece.move(new int[] {newRow, newCol});
-      if(newCol < 3 || newCol > 5){
-        piece.castle();
-      }
-    }
   int oldRow=piece.position[0];
   int oldCol=piece.position[1];
 

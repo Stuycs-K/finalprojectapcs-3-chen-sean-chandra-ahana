@@ -4,6 +4,7 @@ abstract class Piece{
   boolean captured;
   int[] position;
   ArrayList<int[]> possibleMoves;
+  boolean firstMove;
   Board board;
   Piece(boolean isWhite, int value, int[] startPosition, Board board){
     this.isWhite = isWhite;
@@ -29,6 +30,7 @@ abstract class Piece{
       board.grid[go[0]][go[1]] = this;
       board.grid[position[0]][position[1]] = null;
       position = go;
+      afterMove();
     }
   }  
   
@@ -58,6 +60,6 @@ abstract class Piece{
    abstract String toString();
    void afterMove(){
    }
-   void castle(){}
+   void castle(boolean yes){}
    void reachEnd(){}
 }

@@ -104,6 +104,7 @@ void mouseClicked(){
   int col = mouseX / tile;
   int z = promotionCol;
   if (row < 0 || row > 7 || col < 0 || col > 7) return;
+  if(!promotion) promotionPiece = null;
   if(promotion){
     if(col == promotionCol){
     if(isWhite && row >= 0 && row <= 3){
@@ -154,6 +155,16 @@ void mouseClicked(){
 } else{
 int[] destination = new int[]{row, col};
 if (selectedPiece.isLegal(destination)){
+  if(selectedPiece.toString().equals("king") && selectedPiece.firstMove){
+    int desCol = destination[1];
+    if(desCol == 6 || desCol == 2){
+      selectedPiece.castle(desCol == 6); // 6 is kingside
+      whiteTurn = !whiteTurn;
+      selectedPiece = null;
+      selectedPos = null;
+      return;
+    }
+  }
   int[] originalPos = new int[]{selectedPiece.position[0], selectedPiece.position[1]};
       Piece target = board.grid[destination[0]][destination[1]];
       board.grid[originalPos[0]][originalPos[1]] = null;
@@ -169,15 +180,21 @@ if (selectedPiece.isLegal(destination)){
       if(destination[0] == 0 && selectedPiece.isWhite){
     isWhite = true;
         promotion = true;
-        promotionCol = selectedPiece.position[1];
+        promotionCol = destination[1];
         promotionPiece = selectedPiece;
   }
   else if(!selectedPiece.isWhite && destination[0] == 7){
     isWhite = false;
     promotion = true;
-    promotionCol = selectedPiece.position[1];
+    promotionCol = destination[1];
     promotionPiece = selectedPiece;
   }
+  else{
+    promotionPiece = null;
+  }
+    }
+    else{
+      promotionPiece = null;
     }
   whiteTurn = !whiteTurn;
   } else{
