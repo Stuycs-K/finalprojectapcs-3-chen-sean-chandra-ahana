@@ -36,6 +36,56 @@ void setup(){
   
 }
 
+void keyPressed(){
+  if(key == '0'){
+    setup();
+  }
+  
+  if(key == '1'){
+    board = new Board();
+    board.placePiece(new Pawn(true, new int[]{1,0}, board),1,0);
+    board.placePiece(new Pawn(false,new int[]{6,7}, board),6,7);
+    whiteTurn = true;
+    selectedPiece = null;
+    selectedPos = null;
+    promotion = false;
+  }
+  
+  if(key == '2'){
+    board = new Board();
+    board.placePiece(new King(true,new int[]{7,4}, board),7,4);
+    board.placePiece(new Rook(false, new int[]{5,4},board),5,4);
+    board.placePiece(new Bishop(true, new int[]{5,4},board),6,3);
+    board.placePiece(new King(false, new int[]{0,4},board),0,4);
+    whiteTurn = true;
+    selectedPiece = null;
+    selectedPos = null;
+    promotion = false;
+  }
+  if(key == '3'){
+    board = new Board();
+    board.placePiece(new King(true, new int[]{7,0}, board),7,0);
+    board.placePiece(new Rook(false, new int[]{6,0},board),6,0);
+    board.placePiece(new Queen(false, new int[]{5,1},board),5,1);
+    board.placePiece(new King(false, new int[]{0,4},board),0,4);
+        whiteTurn = true;
+    selectedPiece = null;
+    selectedPos = null;
+    promotion = false;
+  }
+  if(key == '4'){
+    board = new Board();
+    board.placePiece(new King(true,new int[]{7,4},board),7,4);
+    board.placePiece(new Rook(true, new int[]{7,7},board),7,7);
+    board.placePiece(new King(false,new int[]{0,4}, board),0,4);
+    board.placePiece(new Rook(false,new int[] {0,0}, board),0,0);
+        whiteTurn = true;
+    selectedPiece = null;
+    selectedPos = null;
+    promotion = false;
+  }
+}
+
 void draw(){
   drawBoard();
   drawPieces();
