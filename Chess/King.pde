@@ -7,6 +7,7 @@
     }
   
     boolean isLegal(int[] go){
+      updateMoves();
       return contains(go);
     }
   
@@ -46,29 +47,31 @@
     }
     
     void castle(boolean kingSide){
+      int row = position[0];
+      if(!firstMove) return;
       if(kingSide){
-            Piece rook = board.grid[position[0]][7];
-      if(rook != null && rook.toString().equals("rook")){
-      board.grid[position[0]][4] = null;
-      board.grid[position[0]][6] = this;
-      this.position = new int[]{position[0],6};
-      board.grid[position[0]][7] = null;
-      board.grid[position[0]][5] = rook;
-      rook.position = new int[]{position[0],5};
+       Piece rook = board.grid[row][7];
+      if(rook != null && rook.toString().equals("rook") && rook.isWhite == this.isWhite){
+        board.grid[row][6] = this;
+        board.grid[row][4] = null;
+      this.position = new int[]{row,6};
+            board.grid[row][5] = rook;
+      board.grid[row][7] = null;
+      rook.position = new int[]{row,5};
       rook.afterMove();
       }
       }
       else{
-        Piece rook = board.grid[position[0]][0];
-  
-        if(rook != null && rook.toString().equals("rook")){
-      board.grid[position[0]][4] = null;
-      board.grid[position[0]][2] = this;
-      this.position = new int[]{position[0],2};
-      board.grid[position[0]][0] = null;
-      board.grid[position[0]][3] = rook;
-      rook.position = new int[]{position[0],3};
+        Piece rook = board.grid[row][0];
+        if(rook != null && rook.toString().equals("rook") && rook.isWhite == this.isWhite){
+           board.grid[row][2] = this;
+          board.grid[row][4] = null;
+      this.position = new int[]{row,2};
+            board.grid[row][3] = rook;
+      board.grid[row][0] = null;
+      rook.position = new int[]{row,3};
       rook.afterMove();
+      rook.updateMoves();
         }
       }
       this.afterMove();

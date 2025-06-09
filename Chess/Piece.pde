@@ -30,6 +30,7 @@ abstract class Piece{
       board.grid[go[0]][go[1]] = this;
       board.grid[position[0]][position[1]] = null;
       position = go;
+      afterMove();
     }
   }  
   
