@@ -40,12 +40,28 @@ class Pawn extends Piece{
           if(target != null && target.isWhite != this.isWhite){
             possibleMoves.add(move);
           }
+          else{
+            Piece side = board.grid[row][col+1];
+            if(side != null && side.toString().equals("pawn")){
+            if(side == board.lastPawn && side.enPassant && side.isWhite != this.isWhite){
+              possibleMoves.add(move);
+            }
+            }
+          }
         }
         move = new int[] {row + direction, col - 1};
         if(isWithinBounds(move)){
           Piece target = board.grid[move[0]][move[1]];
           if(target != null && target.isWhite != this.isWhite){
             possibleMoves.add(move);
+          } 
+          else{
+            Piece side = board.grid[row][col-1];
+            if(side != null && side.toString().equals("pawn")){
+              if(side == board.lastPawn && side.enPassant && side.isWhite != this.isWhite){
+                possibleMoves.add(move);
+              }
+            }
           }
         }        
   }
@@ -56,8 +72,19 @@ class Pawn extends Piece{
         if (isLegal(target)){
             if (Math.abs(targetRow - position[0]) == 2){
                 this.enPassant = true;
+                board.lastPawn = this;
             } else{
                 this.enPassant = false;
+                board.lastPawn = null;
+            }
+            if(Math.abs(targetCol - position[1]) == 1 && board.grid[targetRow][targetCol] == null){
+              Piece tarPawn = board.grid[position[0]][targetCol];
+              if(tarPawn != null && tarPawn.toString().equals("pawn")){
+                if(tarPawn == board.lastPawn && tarPawn.enPassant){
+                  board.grid[position[0]][targetCol] = null;
+                  tarPawn.captured = true;
+                }
+              }
             }
             board.grid[targetRow][targetCol] = this;
             board.grid[position[0]][position[1]] = null;
