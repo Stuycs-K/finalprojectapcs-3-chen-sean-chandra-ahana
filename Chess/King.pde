@@ -85,4 +85,18 @@
     void afterMove(){
       firstMove=false;
     }
+    @Override
+    void move(int[] destination){
+      int row = position[0];
+      int col = position[1];
+      if (destination[1] == 6 && destination[0] == row && firstMove){
+        castle(true);
+        return;
+      }
+      if (destination[1] == 2 && destination[0] == row && firstMove){
+        castle(false);
+        return;
+      }
+      super.move(destination);
+    }
   }
