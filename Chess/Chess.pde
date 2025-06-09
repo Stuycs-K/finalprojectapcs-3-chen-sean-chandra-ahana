@@ -10,6 +10,7 @@ int promotionCol;
 Piece promotionPiece = null;
 
 void setup(){
+  whiteTurn = true;
   size(800,800);
   board = new Board();
   for(int i = 0; i < 8; i++){
