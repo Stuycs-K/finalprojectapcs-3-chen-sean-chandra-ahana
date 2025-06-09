@@ -49,3 +49,5 @@ Expanded description:
 - working with partner to fix correct updatePieces (miscommunication lead to misuse of methods)
 - updated prototype more
 - resized pieces and displayed them
+
+I believe this document accurately reflects the contributions of my teamate.
