@@ -49,3 +49,29 @@ Expanded description:
 - working with partner to fix correct updatePieces (miscommunication lead to misuse of methods)
 - updated prototype more
 - resized pieces and displayed them
+
+### 2025-06-03 - more overall fixes and progress
+- started working on mouseClicked()
+- fixed some out of bounds and null pointer errors while trying to move pieces
+- starting to write promotion
+
+### 2025-06-04 - continued to write promotion, very buggy for some reason with end case pawns
+- some pawns are bugged, need to fix 
+- rectangle doesn't display correctly upon promotion
+
+### 2025-06-05 - working on new methods and fixing old methods
+- writing promotion, and it was a little bugged still but everything works as intended (shows pieces, promotes pieces) except the two pawns
+- started castle, was a little bugged
+- need to continue working on it further, later
+- updated Chess class, fixed broken pawns
+
+### 2025-06-06 - fixed promotion, trying to fix castle
+- fixed castle doing some null pointer shenanigans, still doesn't move rook???
+- first white pawn no longer flickers promotion screen and randomly promote the white rook
+
+### 2025-06-08 - fixed promotion again, wrote custom boards, castle updating
+- tried to fix castle but let partner do it because I couldn't figure out what was wrong 
+- promotion had a weird bug where the 8th pawn was randomly promoting the white rook in the same column, fixed the error (indexing error)
+- wrote custom boards 
+- fixed up a few methods in other classes that crashed with null pointer errors when I made custom boards
+
